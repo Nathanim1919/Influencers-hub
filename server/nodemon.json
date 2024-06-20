@@ -2,6 +2,6 @@
     "watch": ["src"],
     "ext": "ts,json",
     "ignore": ["src/**/*.spec.ts"],
-    "exec": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "exec": "ts-node-dev --respawn --transpile-only src/index.ts"
   }
   
