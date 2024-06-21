@@ -13,7 +13,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet()); // secure your app by setting various HTTP headers
-app.use(morgan('dev')); // log every request to the console
+// app.use(morgan('dev')); // log every request to the console
+// Custom format example
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 app.use(
   cors({
     origin: "*", // allow all origins
