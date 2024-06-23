@@ -1,4 +1,4 @@
-import '../../assets/custome.css'
+// import '../../assets/custome.css'
 
 export const Features: React.FC = () => {
     return (
