@@ -5,37 +5,39 @@ import { BiMessage } from "react-icons/bi";
 import { MdOutlineCampaign } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoNotificationsOutline } from "react-icons/io5";
-
-export interface SidebarProps {
-    setIsHovered: (value: boolean) => void;
-    isHovered: boolean;
-}
+import { SidebarContainer } from "../../assets/styledComponents/sidebar";
+import { AiOutlineLogout } from "react-icons/ai";
 
 
-export const Sidebar: React.FC<SidebarProps> = ({ setIsHovered, isHovered }) => {
+
+
+export const Sidebar: React.FC = () => {
     return (
-        <aside onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)} className="sidebar bg-white h-screen flex flex-col align-end gap-5 px-1">
-            <Link className="flex items-center gap-3 w-full hover:bg-blue-500 hover:text-white" to={'/profile'}>
-                <IoPersonOutline className="text-3xl w-10 p-2 h-10 rounded-full"/>
-               {isHovered && <span className="text-4">Profile</span>}
+        <SidebarContainer>
+            <Link to="/influencerProfile" className="active">
+                <IoPersonOutline size={30} />
+                <span>Profile</span>
             </Link>
-            <Link className="flex items-center gap-3 hover:bg-blue-500 hover:text-white" to={"/messages"}>
-                <BiMessage className="text-3xl w-10 p-2 h-10 rounded-full"/>
-                {isHovered && <span className="text-4">Messages</span>}
+            <Link to="/messages">
+                <BiMessage size={30} />
+                <span>Messages</span>
             </Link>
-            <Link className="flex items-center gap-3 hover:bg-blue-500 hover:text-white" to={'/campagns'}>
-                <MdOutlineCampaign className="text-3xl w-10 p-2 h-10 rounded-full"/>
-               {isHovered && <span className="text-4">Campagns</span>}
+            <Link to="/campaigns">
+                <MdOutlineCampaign size={30} />
+                <span>Campaign</span>
             </Link>
-            <Link className="flex items-center gap-3 hover:bg-blue-500 hover:text-white" to={'/setting'}>
-                <IoSettingsOutline className="text-3xl  w-10 p-2 h-10 rounded-full"/>
-               {isHovered && <span className="text-4">Settings</span>}
+            <Link to="/settings">
+                <IoSettingsOutline size={30} />
+                <span>Settings</span>
             </Link>
-            <Link className="flex items-center gap-3 hover:bg-blue-500 hover:text-white" to={'/notifcations'}>
-                <IoNotificationsOutline className="text-3xl w-10 p-2 h-10 rounded-full"/>
-               {isHovered && <span className="">Notifications</span>}
+            <Link to="/notifications">
+                <IoNotificationsOutline size={30} />
+                <span>Notifications</span>
             </Link>
-        </aside>
+            <Link to={'/logout'} className="logout">
+                <AiOutlineLogout size={30}/>
+                <span>Logout</span>
+            </Link>
+        </SidebarContainer>
     );
 };

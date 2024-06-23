@@ -1,36 +1,110 @@
+import { InfluencerProfileContainer } from "../assets/styledComponents/influencerProfile";
+import InstagramImage from "../assets/heroImages/instagram.png";
+import LinkedinImage from "../assets/heroImages/linkedin.png";
+import TwitterImage from "../assets/heroImages/x.png";
+import tikTokImage from "../assets/heroImages/tiktok.png";
+import youtubeImage from "../assets/heroImages/youtube.png";
+
+
 export const InfluencerProfile: React.FC = () => {
-    return (
-        <section className="influencer-profile bg-green-800">
-            <div className="influencer-profile-header">
-                <h1 className="influencer-profile-title">Influencer Profile</h1>
-                <p className="influencer-profile-text">Welcome to your profile page. Here you can edit your profile, view your messages, campaigns, and settings.</p>
+  return (
+    <InfluencerProfileContainer>
+      <div className="profileHeader">
+        <div className="profile">
+          <div className="profilePicture">
+            <img src="https://via.placeholder.com/150" alt="profile" />
+          </div>
+          <div className="userinfo">
+            <h1>Nathanim Tadele</h1>
+            <p>Software Engineer, Personal Account, 23 Years Old</p>
+            <div className="niches">
+              <span>Technology</span>
+              <span>Software Development</span>
+              <span>Programming</span>
             </div>
-            <div className="influencer-profile-content">
-                <div className="influencer-profile-image">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-                <div className="influencer-profile-details">
-                    <h1 className="influencer-profile-name">John Doe</h1>
-                    <p className="influencer-profile-email">
-                        <span>Email:</span>
-                        <span>
-                            <a href="mailto:"></a>
-                        </span>
-                    </p>
-                    <p className="influencer-profile-platform">
-                        <span>Platform:</span>
-                        <span>Instagram</span>
-                    </p>
-                    <p className="influencer-profile-followers">
-                        <span>Followers:</span>
-                        <span>240+</span>
-                    </p>
-                    <p className="influencer-profile-engagement">
-                        <span>Engagement:</span>
-                        <span>10%</span>
-                    </p>
-                </div>
+          </div>
+        </div>
+        <div className="engagmentButtons">
+            <button>Save for preview</button>
+            <button>Message</button>
+            <button>Edit</button>
+        </div>
+      </div>
+
+      <div className="socialMedias">
+        <div className="instagram">
+            <div>
+                <img src={InstagramImage} alt="instagram" />
+                <p>nathan</p>
+            </div><i className="fab fa-instagram"></i>
+            <div className="statics">
+               <div className="follower">
+                     <h2>100k</h2>
+                     <p>Followers</p>
+               </div>
+               <div className="engagment">
+                        <h2>10k</h2>
+                        <p>Engagement</p>
+               </div>
+               <div className="avarageLikes">
+                        <h2>10k</h2>
+                        <p>Avarage Likes</p>
+               </div>
+               <div className="avarageFrequency">
+                        <h2>10k</h2>
+                        <p>Avarage Frequency</p>
+               </div>
             </div>
-        </section>
-    );
+        </div>
+        <div className="linkedIn">
+            <div>
+                <img src={LinkedinImage} alt="linkedin" />
+                <p>nathan</p>
+            </div>
+            <div className="statics">
+               <div className="follower">
+                     <h2>100k</h2>
+                     <p>Followers</p>
+               </div>
+               <div className="engagment">
+                        <h2>10k</h2>
+                        <p>Engagement</p>
+               </div>
+               <div className="avarageLikes">
+                        <h2>10k</h2>
+                        <p>Avarage Likes</p>
+               </div>
+               <div className="avarageFrequency">
+                        <h2>10k</h2>
+                        <p>Avarage Frequency</p>
+               </div>
+            </div>
+        </div>
+        <div className="linkedIn">
+            <div>
+                <img src={LinkedinImage} alt="linkedin" />
+                <p>nathan</p>
+            </div>
+            <div className="statics">
+               <div className="follower">
+                     <h2>100k</h2>
+                     <p>Followers</p>
+               </div>
+               <div className="engagment">
+                        <h2>10k</h2>
+                        <p>Engagement</p>
+               </div>
+               <div className="avarageLikes">
+                        <h2>10k</h2>
+                        <p>Avarage Likes</p>
+               </div>
+               <div className="avarageFrequency">
+                        <h2>10k</h2>
+                        <p>Avarage Frequency</p>
+               </div>
+            </div>
+        </div>
+      </div>
+    </InfluencerProfileContainer>
+  );
 };
