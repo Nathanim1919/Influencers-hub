@@ -4,6 +4,10 @@ import styled from "styled-components";
 export const InfluencerProfileContainer = styled.div`
   /* background-color: red; */
   display: grid;
+  overflow: hidden;
+  grid-template-columns: 1fr;
+  height: 90vh;
+  padding-bottom: 2rem;
 
 
   .profileHeader{
@@ -12,6 +16,8 @@ export const InfluencerProfileContainer = styled.div`
     background-color: #ffffff;
     align-items: center;
     border: 1px solid #ddd;
+    position: sticky;
+    top: 0;
 
     .profile{
       display: flex;
@@ -66,56 +72,20 @@ export const InfluencerProfileContainer = styled.div`
     }
   }
 
-  .socialMedias{
+  .profileBody{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
+    justify-content: space-between;
+    grid-template-columns: 30% 70%;
+  
+    padding-top: 1rem;
+    width: 100%;
+    margin: 0 auto;
 
-    .instagram, .linkedIn{
-      background-color: #ffffff;
-      border: 1px solid #ddd;
-      padding: 20px;
-
-      div{
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-
-        img{
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          margin-right: 20px;
-        }
-
-        p{
-          font-size: 1.2rem;
-        }
-      }
-
-      .statics{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-
-        div{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          background-color: #f2f2f2;
-          padding: 20px;
-          border-radius: 5px;
-
-          h2{
-            font-size: 1.5rem;
-          }
-
-          p{
-            font-size: 1rem;
-          }
-        }
-      }
+    .more-info{
+      overflow-y: auto;
+      height: 60vh;
+      background-color: #fbf7f7;
+      padding: 1rem;
     }
   }
 `;

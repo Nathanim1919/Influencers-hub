@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const RouteContainer = styled.div`
     display: grid;
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 
     .route{
         display: grid;
