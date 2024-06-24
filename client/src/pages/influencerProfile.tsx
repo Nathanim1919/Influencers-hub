@@ -1,7 +1,8 @@
 import { InfluencerProfileContainer } from "../assets/styledComponents/influencerProfile";
 import { RecentPosts } from "../components/influencerProfiles/recentPosts";
 import { SocialMediaMetrics } from "../components/influencerProfiles/socialMediaMetrics";
-
+import MyImage from "../assets/influencerProfileImages/a.jpeg"
+import { SponsoredPosts } from "../components/influencerProfiles/sponsoredPosts";
 
 export const InfluencerProfile: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ export const InfluencerProfile: React.FC = () => {
       <div className="profileHeader">
         <div className="profile">
           <div className="profilePicture">
-            <img src="https://via.placeholder.com/150" alt="profile" />
+            <img src={MyImage} alt="profile" />
           </div>
           <div className="userinfo">
             <h1>Nathanim Tadele</h1>
@@ -31,6 +32,7 @@ export const InfluencerProfile: React.FC = () => {
         <SocialMediaMetrics/>
         <div className="more-info">
           <RecentPosts/>
+          <SponsoredPosts/>
         </div>
       </div>
     </InfluencerProfileContainer>

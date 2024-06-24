@@ -6,12 +6,11 @@ import { Home } from "./pages/Home";
 import { InfluencerRoutes } from "./routes/Influencer";
 
 function App() {
-
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/influencer" element={<InfluencerRoutes />} />
+        <Route path="/influencer/*" element={<InfluencerRoutes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistrationForm />} />
       </Routes> 

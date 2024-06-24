@@ -9,16 +9,14 @@ import { SidebarContainer } from "../../assets/styledComponents/sidebar";
 import { AiOutlineLogout } from "react-icons/ai";
 
 
-
-
 export const Sidebar: React.FC = () => {
     return (
         <SidebarContainer>
-            <Link to="/influencerProfile" className="active">
+            <Link to="/influencer" className="active">
                 <IoPersonOutline size={30} />
                 <span>Profile</span>
             </Link>
-            <Link to="/messages">
+            <Link to="messages">
                 <BiMessage size={30} />
                 <span>Messages</span>
             </Link>

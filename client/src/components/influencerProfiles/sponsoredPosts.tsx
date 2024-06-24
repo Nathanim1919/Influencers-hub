@@ -10,11 +10,11 @@ import { CiEdit } from "react-icons/ci";
 import MyImage from "../../assets/influencerProfileImages/a.jpeg"
 
 
-export const RecentPosts: React.FC = () => {
+export const SponsoredPosts: React.FC = () => {
   return (
     <RecentPostsContainer>
         <div className="header">
-        <h1>Featured Posts</h1>
+        <h1>Sponsored Posts</h1>
         <div className="editIcon">
             <CiEdit/>
         </div>

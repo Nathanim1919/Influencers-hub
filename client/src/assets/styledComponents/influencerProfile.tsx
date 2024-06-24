@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 
 export const InfluencerProfileContainer = styled.div`
-  /* background-color: red; */
   display: grid;
   overflow: hidden;
   grid-template-columns: 1fr;
