@@ -4,10 +4,9 @@ import styled from "styled-components";
 export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   background-color: aliceblue;
-  width: 100%;
   transition: width .4s ease-in-out;
   height: 100vh;
   padding: 1rem 0;
@@ -32,27 +31,11 @@ export const SidebarContainer = styled.div`
       background-color: #3464f4;
       color: white;
       box-shadow: 0 6px 17px rgba(0,0,0,.07);
-      transform: translateX(10px);
-      border-radius: 10px;
       transition: all .2s ease-in-out;
 
     }
-
-    span{
-      display: none;
-      transition: display .3s ease-in-out;
-    }
   }
 
-  &:hover{
-    width: 100%;
-
-    a{
-      span{
-        display: grid;
-      }
-    }
-  }
 
   >a.logout{
     justify-self: end;

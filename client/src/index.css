@@ -15,11 +15,11 @@
   
   /* Handle styles */
   ::-webkit-scrollbar-thumb {
-    background: #dcd9d9; /* color of the handle */
+    background: linear-gradient(to top, #333, transparent); /* color of the handle */
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #a9a6a6; /* color of the handle on hover */
+    background: #161616; /* color of the handle on hover */
   }
   

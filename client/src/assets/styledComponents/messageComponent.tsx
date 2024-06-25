@@ -85,12 +85,51 @@ export const RecentPostsContainer = styled.div`
     grid-template-rows: .1fr 1fr .1fr;
     height: 90vh;
     background-color: white;
+    border-top: 1px solid #eee;
+
     .activeBuddy {
-      display: grid;
-      grid-template-columns: 0.2fr 0.8fr;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+
+      .options{
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eee;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 21px rgba(0,0,0,.08);
+      }
+      >div{
+      display: flex;
+      padding: 0.3rem 1rem;
+      align-items: center;
       gap: 1rem;
-      background-color: #fff;
-      padding: 0.5rem 1rem;
+
+      .buddyInfo{
+        display: flex;
+        flex-direction: column;
+
+        &:hover{
+          opacity: .5;
+        }
+
+        h2{
+          font-size: .8rem;
+          font-weight: bold;
+          margin: 0;
+        }
+
+        p{
+          font-size: .6rem;
+          color: #40a463;
+          margin: 0;
+        }
+      }
+    }
 
       .image {
         width: 50px;
@@ -145,9 +184,28 @@ export const RecentPostsContainer = styled.div`
 
                 .msgContent{
                     padding: .8rem 1rem;
-                    background-color: #f7f4f4;
-                    border-radius: 0px 30px;
+                    background: linear-gradient(to bottom, #fff, #eee);
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 30px;
+                    border-bottom-right-radius: 30px;
                     box-shadow: 0 3px 34px rgba(0,0,0,.08);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: start;
+
+
+                    >span{
+                      align-self: end;
+                      font-size: .6rem;
+                      width: 100%;
+                      display: grid;
+                      align-items: end;
+                      justify-content: end;
+                      flex: 1;
+                      color: #908c8c;
+                      
+                    }
                 }
             }
 
@@ -164,7 +222,7 @@ export const RecentPostsContainer = styled.div`
 
             .body{
                 .msgContent{
-                    background-color: #1e2224;
+                  background: linear-gradient(to bottom, #333, #514f4f);
                     align-self: end;
                     color: #fff;
                 }

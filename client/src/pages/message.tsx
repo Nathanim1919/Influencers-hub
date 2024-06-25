@@ -3,6 +3,9 @@ import ProfileImage from "../assets/influencerProfileImages/a.jpeg";
 import InstagramImage from "../assets/heroImages/instagram.png";
 import XImage from "../assets/heroImages/x.png";
 import LinkedinImage from "../assets/heroImages/linkedin.png";
+import { Link } from "react-router-dom";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
 export const Message: React.FC = () => {
   return (
     <RecentPostsContainer>
@@ -130,13 +133,18 @@ export const Message: React.FC = () => {
       </div>
       <div className="conversationBody">
         <div className="activeBuddy">
-          <div className="image">
-            <img src={ProfileImage} alt="profileImage" />
+          <div>
+            <div className="image">
+              <img src={ProfileImage} alt="profileImage" />
+            </div>
+            <Link to="/influencer" className="buddyInfo">
+              <h2>Nathanim Tadele</h2>
+              <p>online</p>
+            </Link>
           </div>
-          <div className="buddyInfo">
-            <h2>Nathanim Tadele</h2>
-            <p>online</p>
-          </div>
+            <div className="options">
+              <BsThreeDotsVertical />
+            </div>
         </div>
         <div className="conversationBody">
           <div className="message buddyA">
@@ -146,10 +154,8 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>Hello!</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyB">
@@ -159,10 +165,8 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>Hi!</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyA">
@@ -172,10 +176,8 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>Hello!</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyB">
@@ -184,12 +186,11 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello! how are doing</p>
+                <p>Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing</p>
+                <span>2:50 AM</span>
               </div>
             </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
-            </div>
+           
           </div>
           <div className="message buddyA">
             <div className="body">
@@ -197,11 +198,9 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-              <p>Hello! how are doing, any thought?</p>
+                <p>Hello! how are doing, any thought?</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyA">
@@ -211,10 +210,8 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>How are you?</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyB">
@@ -224,10 +221,8 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>Hi!</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyA">
@@ -237,10 +232,8 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>Hello!</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyB">
@@ -249,11 +242,12 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing</p>
+                <p>
+                  Hello! how are doing, Hello! how are doing, Hello! how are
+                  doing, Hello! how are doing, Hello! how are doing
+                </p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyA">
@@ -262,11 +256,9 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-              <p>Hello! how are doing, any thought?</p>
+                <p>Hello! how are doing, any thought?</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
           <div className="message buddyA">
@@ -276,15 +268,13 @@ export const Message: React.FC = () => {
               </div>
               <div className="msgContent">
                 <p>How are you?</p>
+                <span>2:50 AM</span>
               </div>
-            </div>
-            <div className="timestamp">
-              <p>2 min ago</p>
             </div>
           </div>
         </div>
         <div className="inputform">
-          <input type="text" placeholder="Write message..."/>
+          <input type="text" placeholder="Write message..." />
           <button>Send</button>
         </div>
       </div>

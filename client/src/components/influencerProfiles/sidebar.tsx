@@ -11,7 +11,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 export const Sidebar: React.FC = () => {
     return (
-        <SidebarContainer>
+        <SidebarContainer className="sidebar">
             <Link to="/influencer" className="active">
                 <IoPersonOutline size={30} />
                 <span>Profile</span>
