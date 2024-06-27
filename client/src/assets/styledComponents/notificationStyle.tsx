@@ -7,7 +7,7 @@ export const NotifcationContanier = styled.div`
   padding-bottom: 1rem;
   background-color: #fff;
   overflow-y: auto;
-  height: 90vh;
+  height: 100vh;
 
   .header {
     position: sticky;

@@ -2,13 +2,29 @@ import styled from "styled-components";
 // for path ../components/
 
 export const SidebarContainer = styled.div`
+ display: grid;
+ align-items: start;
+ border-right: 1px solid #ddd;
+ background-color: #fff;
+ box-shadow: 0 6px 17px rgba(0, 0, 0, 0.119);
+ position: relative;
+ z-index: 10;
+
+ .logo{
+    display: flex;
+    width: 60px;
+
+    img{
+      width: 100%;
+    }
+  
+ }
+
+>div{
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
   height: 100%;
-  background-color: aliceblue;
   transition: width 0.4s ease-in-out;
-  height: 100vh;
   padding: 1rem 0;
   gap: 1rem;
   justify-content: start;
@@ -33,10 +49,14 @@ export const SidebarContainer = styled.div`
       transition: all 0.2s ease-in-out;
     }
   }
+}
 
-  > a.logout {
-    justify-self: end;
-    /* background-color: red; */
-    margin-top: 13rem;
+.downlikns{
+  .profilePic{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
   }
+}
 `;

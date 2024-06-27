@@ -18,7 +18,7 @@ export const RecentPostsContainer = styled.div`
 
   .activeConversations {
     overflow-y: auto;
-    height: 85vh;
+    height: 100vh;
     background-color: #eee;
 
     .actives {
@@ -83,7 +83,7 @@ export const RecentPostsContainer = styled.div`
     overflow: hidden;
     display: grid;
     grid-template-rows: .1fr 1fr .1fr;
-    height: 90vh;
+    height: 100vh;
     background-color: white;
     border-top: 1px solid #eee;
 

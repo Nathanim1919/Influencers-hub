@@ -4,12 +4,12 @@ export const SocialMediaMetricsContainer = styled.div`
     display: grid;
     grid-template-columns:1fr;
     padding-top: 1rem;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
     background-color: #ffffff;
     overflow: hidden;
     overflow-y: auto;
-    height: 60vh;
+    height: 75vh;
     gap: 1rem;
     
     .instagram, .linkedIn{

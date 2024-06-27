@@ -5,7 +5,7 @@ export const InfluencerProfileContainer = styled.div`
   display: grid;
   overflow: hidden;
   grid-template-columns: 1fr;
-  height: 90vh;
+  height: 100vh;
   padding-bottom: 2rem;
 
 
@@ -76,13 +76,13 @@ export const InfluencerProfileContainer = styled.div`
     justify-content: space-between;
     grid-template-columns: 30% 70%;
   
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
     width: 100%;
     margin: 0 auto;
 
     .more-info{
       overflow-y: auto;
-      height: 60vh;
+      height: 75vh;
       background-color: #fbf7f7;
       padding: 1rem;
     }

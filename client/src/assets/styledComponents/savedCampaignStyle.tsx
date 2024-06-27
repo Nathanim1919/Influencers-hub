@@ -27,9 +27,9 @@ background-color: #f9f9f9;
     .campaignLists{
         display: grid;
         gap:.4rem;
-        height: 80vh;
+        height: 90vh;
         overflow-y: auto;
-        padding: 2rem 0;
+        padding: 2rem 1rem;
 
         
         .campaign{
@@ -86,11 +86,14 @@ background-color: #f9f9f9;
             }
         }
         div.active{
-            background:linear-gradient(to right, #000000, #aeabab);
+            background-color:#333;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.3);
             color: #fff;
             position: sticky;
             top: -2rem;
             z-index: 10;
+            border: none;
 
             .campaignInfo{
                 p{
