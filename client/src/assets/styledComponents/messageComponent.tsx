@@ -178,7 +178,7 @@ export const RecentPostsContainer = styled.div`
                 gap: 1rem;
 
                 img{
-                    width: 30px;
+                    width: 100px;
                     align-self: start;
                 }
 
@@ -193,6 +193,10 @@ export const RecentPostsContainer = styled.div`
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: start;
+
+                    p{
+                      font-size: .8rem;
+                    }
 
 
                     >span{

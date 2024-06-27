@@ -20,15 +20,15 @@ export const Sidebar: React.FC = () => {
                 <BiMessage size={30} />
                 <span>Messages</span>
             </Link>
-            <Link to="/campaigns">
+            <Link to="campaigns">
                 <MdOutlineCampaign size={30} />
                 <span>Campaign</span>
             </Link>
-            <Link to="/settings">
+            <Link to="settings">
                 <IoSettingsOutline size={30} />
                 <span>Settings</span>
             </Link>
-            <Link to="/notifications">
+            <Link to="notifications">
                 <IoNotificationsOutline size={30} />
                 <span>Notifications</span>
             </Link>

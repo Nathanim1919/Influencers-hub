@@ -1,6 +1,6 @@
 import { RecentPostsContainer } from "../assets/styledComponents/messageComponent";
 import ProfileImage from "../assets/influencerProfileImages/a.jpeg";
-import InstagramImage from "../assets/heroImages/instagram.png";
+import InstagramImage from "../assets/influencerProfileImages/a.jpeg";
 import XImage from "../assets/heroImages/x.png";
 import LinkedinImage from "../assets/heroImages/linkedin.png";
 import { Link } from "react-router-dom";
@@ -153,7 +153,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello!</p>
+                <p>Hi John, I’m Emma from Brand X. We’re big fans of your travel content and would love to discuss a potential collaboration. Are you available for a quick chat this week?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -164,7 +164,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hi!</p>
+                <p>Hi Emma! Thank you for reaching out. I’m thrilled to hear that you enjoy my content. I’m available this Thursday and Friday. What time works best for you?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -175,7 +175,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello!</p>
+                <p>Thursday at 3 PM would be perfect. We’re launching a new line of travel accessories and believe you’d be a great fit to help promote them. We’re thinking of a series of Instagram posts and stories. Does that interest you?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -186,7 +186,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing, Hello! how are doing</p>
+                <p>Thursday at 3 PM works for me. Your new line sounds exciting! I’d love to hear more about your vision for the campaign and how I can contribute. Do you have any specific themes or messages in mind?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -198,18 +198,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello! how are doing, any thought?</p>
-                <span>2:50 AM</span>
-              </div>
-            </div>
-          </div>
-          <div className="message buddyA">
-            <div className="body">
-              <div className="image">
-                <img src={InstagramImage} alt="" />
-              </div>
-              <div className="msgContent">
-                <p>How are you?</p>
+                <p>We’re aiming to highlight the durability and stylish design of our accessories, especially for active travelers. We’d like to focus on your real-life travel experiences, showcasing how our products make your journeys more convenient. Could you also share a few behind-the-scenes moments in your stories?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -220,7 +209,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hi!</p>
+                <p>Absolutely! I think showcasing the accessories in real travel scenarios will resonate well with my audience. I can create a series of posts featuring the products in different settings, along with some engaging stories. Do you have a preferred timeline for this campaign?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -231,32 +220,42 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello!</p>
+                <p>We’re looking to launch in two weeks. Would you be able to start creating content next week? Also, could you share your rates for Instagram posts and stories?</p>
                 <span>2:50 AM</span>
               </div>
             </div>
           </div>
           <div className="message buddyB">
+            <div className="body">
+              <div className="image">
+                <img src={InstagramImage} alt="" />
+              </div>
+              <div className="msgContent">
+                <p> can definitely start next week. For Instagram posts, my rate is $500 per post, and for stories, it’s $300 per story. I also offer a package deal for a series of posts and stories if that’s something you’re interested in.</p>
+                <span>2:50 AM</span>
+              </div>
+            </div>
+          </div>
+          <div className="message buddyA">
             <div className="body">
               <div className="image">
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
                 <p>
-                  Hello! how are doing, Hello! how are doing, Hello! how are
-                  doing, Hello! how are doing, Hello! how are doing
+                That sounds great. Let’s go with the package deal. We’ll send you the products this week so you can get started. Could you also send us an invoice for the collaboration?
                 </p>
                 <span>2:50 AM</span>
               </div>
             </div>
           </div>
-          <div className="message buddyA">
+          <div className="message buddyB">
             <div className="body">
               <div className="image">
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>Hello! how are doing, any thought?</p>
+                <p>Perfect, I’ll prepare the invoice and send it over by tomorrow. I’m looking forward to working with Brand X. I’ll ensure the content aligns perfectly with your brand’s vision.</p>
                 <span>2:50 AM</span>
               </div>
             </div>
@@ -267,7 +266,7 @@ export const Message: React.FC = () => {
                 <img src={InstagramImage} alt="" />
               </div>
               <div className="msgContent">
-                <p>How are you?</p>
+                <p>Thank you, John. We’re excited to see your creativity in action! Let’s touch base again on Thursday to finalize the details.</p>
                 <span>2:50 AM</span>
               </div>
             </div>
