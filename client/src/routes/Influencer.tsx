@@ -7,6 +7,7 @@ import { Message } from "../pages/message";
 import CampaignList from "../pages/campaign";
 import { Notification } from "../pages/notification";
 import { Influencers } from "../pages/influencers";
+import { BrandProfile } from "../pages/brandProfile";
 
 
 export const InfluencerRoutes = () => {
@@ -16,7 +17,7 @@ export const InfluencerRoutes = () => {
       <div className="route">
         <Sidebar/>
         <Routes>
-          <Route path="/" element={<InfluencerProfile />} />
+          <Route path="/" element={<BrandProfile />} />
           <Route path="messages" element={<Message/>}/>
           <Route path="campaigns" element={<CampaignList/>} />
           <Route path="notifications" element={<Notification/>}/>

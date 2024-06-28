@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const CampaignCardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -31,23 +30,23 @@ export const CampaignCardContainer = styled.div`
   }
 
   .campaignInfo {
-   display: grid;
-   grid-template-columns: .5fr .5fr;
-   gap: 2rem;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    gap: 2rem;
 
-      h1 {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
+    h1 {
+      font-size: 1.2rem;
+      font-weight: bold;
     }
-
-      p {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #6b6b6b;
   }
 
-  .info{
+  p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6b6b6b;
+  }
+
+  .info {
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
@@ -63,7 +62,7 @@ export const CampaignCardContainer = styled.div`
     }
   }
 
-  .btns{
+  .btns {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
@@ -72,14 +71,14 @@ export const CampaignCardContainer = styled.div`
     button {
       border: none;
       border-radius: 0.5rem;
-      padding: .5rem 1rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       font-weight: 500;
-      font-size: .8rem;
+      font-size: 0.8rem;
       display: flex;
       align-items: center;
-      gap: .5rem;
+      gap: 0.5rem;
     }
 
     .viewDetail {
@@ -88,7 +87,6 @@ export const CampaignCardContainer = styled.div`
 
       &:hover {
         background-color: #e3e3e3;
-        
       }
     }
 
