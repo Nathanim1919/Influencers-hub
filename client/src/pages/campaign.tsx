@@ -129,7 +129,7 @@ const CampaignList: React.FC = () => {
 
   return (
     <CampaignListContainer>
-      {/* {<div className="lists">
+      {<div className="lists">
         <div className="header">
           <h1>Campaigns</h1>
           <p>
@@ -141,8 +141,8 @@ const CampaignList: React.FC = () => {
             <CampaignCard key={index} {...campaign} />
           ))}
         </div>
-      </div>} */}
-      <CampaignDetail/>
+      </div>}
+      {/* <CampaignDetail/> */}
       <SavedCampaign />
     </CampaignListContainer>
   );

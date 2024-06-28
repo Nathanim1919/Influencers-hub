@@ -1,6 +1,11 @@
 import React from "react";
 import { CampaignCardContainer } from "../../assets/styledComponents/cardsStyle/campaignCard";
 import CampaignImage from '../../assets/influencerProfileImages/a.jpeg'
+import { IoSaveOutline } from "react-icons/io5";
+import { TbListDetails } from "react-icons/tb";
+import { GrSend } from "react-icons/gr";
+
+
 
 interface CampaignCardProps {
   title: string;
@@ -15,7 +20,6 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
   title,
   brand,
   description,
-  startDate,
   endDate,
   budget,
 }) => {
@@ -26,11 +30,8 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
           <img src={CampaignImage} alt="campaign" />
         </div>
         <div className="info">
-          <p className="brand">{brand}</p>
+          <h3 className="brand">{brand}</h3>
           <div className="date">
-            <p>
-              <strong>Start:</strong> {startDate}
-            </p>
             <p>
               <strong>End:</strong> {endDate}
             </p>
@@ -45,9 +46,9 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
       <p className="description">{description}</p>
       </div>
       <div className="btns">
-        <button className="viewDetail">Details</button>
-        <button className="apply">Apply</button>
-        <button className="saveForPreview">Save</button>
+        <button className="viewDetail"><TbListDetails/>Details</button>
+        <button className="apply"><GrSend/>Apply</button>
+        <button className="saveForPreview"><IoSaveOutline/>Save</button>
       </div>
     </CampaignCardContainer>
   );

@@ -47,6 +47,22 @@ export const CampaignCardContainer = styled.div`
         color: #6b6b6b;
   }
 
+  .info{
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    width: 100%;
+
+    h3 {
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #6b6b6b;
+    }
+  }
+
   .btns{
     display: flex;
     gap: 1rem;
@@ -56,25 +72,29 @@ export const CampaignCardContainer = styled.div`
     button {
       border: none;
       border-radius: 0.5rem;
-      padding: 1rem 1rem;
+      padding: .5rem 1rem;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       font-weight: 500;
       font-size: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
     }
 
     .viewDetail {
-      background-color: #3464f4;
-      color: white;
+      background-color: #ffffff;
+      color: #333;
 
       &:hover {
-        background-color: #1e3a8a;
+        background-color: #e3e3e3;
+        
       }
     }
 
     .apply {
-      background-color: #f8f8f8;
-      color: #3464f4;
+      background-color: #81ac64;
+      color: #ffffff;
 
       &:hover {
         background-color: #e3e3e3;
