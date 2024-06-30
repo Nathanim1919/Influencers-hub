@@ -2,17 +2,15 @@
 import React from 'react';
 
 interface InputFieldProps {
-    label: string;
     type: string;
     placeholder: string;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ label, type, placeholder, value, onChange }) => {
+const InputField: React.FC<InputFieldProps> = ({ type, placeholder, value, onChange }) => {
   return (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700">{label}</label>
       <input
         type={type}
         placeholder={placeholder}

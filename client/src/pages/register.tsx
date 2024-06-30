@@ -1,110 +1,61 @@
 import React, { useState } from "react";
 import InputField from "../components/common/inputField";
-import { Button } from "../components/common/button";
-import {
-  FaLinkedinIn,
-  FaFacebookF,
-  FaInstagram,
-  FaGoogle,
-} from "react-icons/fa";
-import { useAuth } from "../contexts/authContext";
-
+import { RegisterPageContainer } from "../assets/styledComponents/registerPageStyle";
+import { RoleSelector } from "../components/modals/registrationModals/roleSelector";
+import { SetPasswordModal } from "../components/modals/registrationModals/passwordModal";
+// import { useAuth } from "../contexts/authContext";
 
 const RegistrationForm: React.FC = () => {
+  // states for managing form data
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [brandName, setBrandName] = useState("");
-  const {register} = useAuth();
+  const [role, setRole] = useState("");
 
+  // states for managing modals
+  const [selectRole, setSelectRole] = useState(false);
+  const [openPasswordModal, setOpenPasswordModal] = useState(false);
+  // const { register } = useAuth();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setPassword(e.target.value);
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => setConfirmPassword(e.target.value);
-  const handleBrandNameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setBrandName(e.target.value);
 
+  // const handleSubmit = async () => {
+  //   await register({ email, password, brandName })
+  //     .then((res) => {
+  //       console.log("Registration successful");
+  //     })
+  //     .catch((err) => {
+  //       console.error("Registration failed", err);
+  //     });
+  // };
 
-  const handleSubmit = async () => {
-
-    await register({ email, password, brandName })
-      .then((res) => {
-        console.log("Registration successful");
-      })
-      .catch((err) => {
-        console.error("Registration failed", err);
-      });
-  };
+  // handlers
 
   return (
-    <div className="grid grid-cols-2 h-screen">
-      <div className="bg-gray-900 h-full flex flex-col items-center justify-center px-10">
-        <h2 className="text-gray-100 text-2xl font-semibold">Welcome to</h2>
-        <h1 className="text-white font-bold text-5xl">Influencers-HUB</h1>
-        <p className="text-gray-100 text-lg">
-          Connect with millions of customers and grow your business. Join the
-          Influencers-HUB community and unlock endless opportunities for your
-          brand.
-        </p>
-      </div>
-      <div className="w-96 mx-auto mt-20">
-        <h1 className="text-2xl py-10 font-semibold text-center">
-          Registration for Influencers
-        </h1>
+    <RegisterPageContainer>
+      {selectRole && (
+        <RoleSelector
+          setRole={setRole}
+          setOpenPasswordModal={setOpenPasswordModal}
+          setSelectRole={setSelectRole}
+        />
+      )}
+      {openPasswordModal && <SetPasswordModal password={password} setPassword={setPassword} />}
+      <h1>Influencers-HUB</h1>
+      <div>
         <form>
           <InputField
-            label="Email"
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={handleEmailChange}
           />
-          <InputField
-            label="Password"
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-           <InputField
-            label="Brand Name"
-            type="password"
-            placeholder="Enter your brand name"
-            value={brandName}
-            onChange={handleBrandNameChange}
-          />
-          <InputField
-            label="Confirm Password"
-            type="password"
-            placeholder="Confirm Your Password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-          />
-          <Button type="button" onClick={handleSubmit}>
-            Register
-          </Button>
-          <button className=" flex items-center justify-start gap-2 p-2 text-white w-full my-2 signwithinstagram bg-gradient-to-r from-purple-500 to-pink-500">
-            <FaInstagram />
-            Sign up with Instagram
-          </button>
-          <button className=" flex items-center justify-start gap-2 p-2 text-white w-full my-2 signupwithlinkedin bg-blue-500">
-            <FaLinkedinIn />
-            Sign up with LinkedIn
-          </button>
-          <button className="flex items-center justify-start gap-2 p-2 text-white w-full my-2 signwithgoogle bg-red-500">
-            <FaGoogle />
-            Sign up with Google
-          </button>
-          <button className=" flex items-center justify-start gap-2 p-2 text-white w-full my-2 signwithfacebook bg-blue-500">
-            <FaFacebookF />
-            Sign up with Facebook
+          <button type="button" onClick={() => setSelectRole(true)}>
+            next
           </button>
           <div>
-            <p className="mt-4 text-gray-700 text-sm">
+            <p>
               Already have an account?{" "}
               <a href="/login" className="text-blue-500">
                 Login
@@ -113,7 +64,7 @@ const RegistrationForm: React.FC = () => {
           </div>
         </form>
       </div>
-    </div>
+    </RegisterPageContainer>
   );
 };
 

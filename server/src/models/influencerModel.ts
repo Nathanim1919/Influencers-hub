@@ -1,10 +1,17 @@
 import mongoose from "mongoose";
 import { IInfluencer } from "../interfaces/IInfluencer";
+import { UserRole } from "../utils/userRoles";
 
 const influencerSchema = new mongoose.Schema<IInfluencer>({
   username: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
+  role: {
+    type: String,
+    required: true,
+    enum: Object.values(UserRole),
+    default: UserRole.influencer,
+  },
   profilePictureUrl: { type: String, required: true },
   bio: { type: String, required: true },
   location: { type: String, required: true },

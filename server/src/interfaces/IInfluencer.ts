@@ -1,8 +1,12 @@
+import { ObjectId } from "mongoose";
+import { UserRole } from "../utils/userRoles";
+
 export interface IInfluencer {
-    _id: string;
+    _id: ObjectId;
     username: string;
     password: string;
     email: string;
+    role: UserRole;
     profilePictureUrl: string;
     bio: string;
     location: string;

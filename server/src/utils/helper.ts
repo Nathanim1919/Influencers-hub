@@ -4,7 +4,7 @@ import { IInfluencer } from "../interfaces/IInfluencer";
 import redisClient from "./redisClient";
 import bcrypt from "bcrypt";
 import { BaseDocument } from "../interfaces/BaseDocument";
-import dbClient from "./dbClient";
+// import dbClient from "./dbClient";
 
 // auth helper functions
 

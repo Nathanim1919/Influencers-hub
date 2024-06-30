@@ -1,10 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 import { IBrand } from "../interfaces/IBrand";
+import { UserRole } from "../utils/userRoles";
 
 const brandSchema = new Schema<IBrand>({
   email: { type: String, required: true },
   password: { type: String, required: true },
   brandName: { type: String, required: false },
+  role: { type: String, required: true, enum:Object.values(UserRole), default: UserRole.brand },
   logoUrl: { type: String, required: false },
   website: { type: String, required: false },
   bio: { type: String, required: false },
