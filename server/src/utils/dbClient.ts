@@ -9,7 +9,8 @@ class DBClient {
   constructor() {
     this.db = null;
     // Use the promise-based approach to connect to MongoDB
-    MongoClient.connect(process.env.MONGO_URL!)
+    MongoClient.connect("mongodb+srv://finance:finance@cluster0.vxomzcr.mongodb.net/influencerHUB?retryWrites=true&w=majority", {
+    })
       .then((client) => {
         this.db = client.db(process.env.DATABASE!);
         console.log("DB connected");
@@ -29,6 +30,7 @@ class DBClient {
   async getCollection(collection: string) {
     return this.db!.collection(collection);
   }
+
 
   // Add a method to get a document by ID
   async getDocumentById<T extends BaseDocument>(
@@ -90,5 +92,5 @@ class DBClient {
   }
 }
 
-const dbClient = new DBClient();
-export default dbClient;
+// const dbClient = new DBClient();
+// export default dbClient;

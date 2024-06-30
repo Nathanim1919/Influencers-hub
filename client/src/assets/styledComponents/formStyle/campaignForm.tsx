@@ -16,6 +16,7 @@ export const CampaignFormContainer = styled.div<InfluencersSearchContainerProps>
     transform: translateX(${(props) => (props.opencreateForm ? "0%" : "100%")});
     transition: transform 0.3s ease-in-out;
     padding-bottom: 1rem;
+    z-index: 1000;
 
 
 

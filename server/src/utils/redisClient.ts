@@ -34,6 +34,7 @@ class RedisClient {
   }
 
   async set(key: string, value: string): Promise<void> {
+    console.log(`Setting key: ${key}, value: ${value}`);
     await this.client.set(key, value);
   }
 

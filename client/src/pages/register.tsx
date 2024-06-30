@@ -7,20 +7,37 @@ import {
   FaInstagram,
   FaGoogle,
 } from "react-icons/fa";
+import { useAuth } from "../contexts/authContext";
+
 
 const RegistrationForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const {register} = useAuth();
+
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => setConfirmPassword(e.target.value);
+  const handleBrandNameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setBrandName(e.target.value);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Registration form submitted:", { email, password });
-    // Add registration logic here
+
+  const handleSubmit = async () => {
+
+    await register({ email, password, brandName })
+      .then((res) => {
+        console.log("Registration successful");
+      })
+      .catch((err) => {
+        console.error("Registration failed", err);
+      });
   };
 
   return (
@@ -38,7 +55,7 @@ const RegistrationForm: React.FC = () => {
         <h1 className="text-2xl py-10 font-semibold text-center">
           Registration for Influencers
         </h1>
-        <form onSubmit={handleSubmit}>
+        <form>
           <InputField
             label="Email"
             type="email"
@@ -53,7 +70,23 @@ const RegistrationForm: React.FC = () => {
             value={password}
             onChange={handlePasswordChange}
           />
-          <Button onClick={handleSubmit}>Register</Button>
+           <InputField
+            label="Brand Name"
+            type="password"
+            placeholder="Enter your brand name"
+            value={brandName}
+            onChange={handleBrandNameChange}
+          />
+          <InputField
+            label="Confirm Password"
+            type="password"
+            placeholder="Confirm Your Password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+          <Button type="button" onClick={handleSubmit}>
+            Register
+          </Button>
           <button className=" flex items-center justify-start gap-2 p-2 text-white w-full my-2 signwithinstagram bg-gradient-to-r from-purple-500 to-pink-500">
             <FaInstagram />
             Sign up with Instagram

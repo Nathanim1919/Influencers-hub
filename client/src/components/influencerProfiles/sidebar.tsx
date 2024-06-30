@@ -8,9 +8,16 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { SidebarContainer } from "../../assets/styledComponents/sidebar";
 import { AiOutlineLogout } from "react-icons/ai";
 import LogoImage from "../../assets/heroImages/handshake.png";
-import ProfileImage from '../../assets/influencerProfileImages/a.jpeg'
+import ProfileImage from "../../assets/influencerProfileImages/a.jpeg";
+import { useAuth } from "../../contexts/authContext";
 
 export const Sidebar: React.FC = () => {
+  const { user, logout } = useAuth();
+
+  const handleLogout = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    await logout();
+  };
   return (
     <SidebarContainer className="sidebar">
       <div className="logo">
@@ -44,15 +51,19 @@ export const Sidebar: React.FC = () => {
       </div>
 
       <div className="downlikns">
-        <Link to={"/logout"} className="logout">
+        <Link
+          to={"/logout"}
+          onClick={(e) => handleLogout(e)}
+          className="logout"
+        >
           <AiOutlineLogout size={30} />
           <span>Logout</span>
         </Link>
         <Link to={"/profile"}>
           <div className="profilePic">
-            <img src={ProfileImage}alt="profile" />
+            <img src={ProfileImage} alt="profile" />
           </div>
-          <span>Nathanim T.</span>
+          <span>{user?.email}</span>
         </Link>
       </div>
     </SidebarContainer>
