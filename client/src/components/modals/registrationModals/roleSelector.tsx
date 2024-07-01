@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 interface RoleSelectorProps {
   setRole: (role: string) => void;
@@ -9,15 +10,24 @@ interface RoleSelectorProps {
 export const RoleSelector: React.FC<RoleSelectorProps> = ({
   setRole,
   setOpenPasswordModal,
-  setSelectRole
+  setSelectRole,
 }) => {
+
   return (
     <Container>
+      <div
+        className="back"
+        onClick={() => {
+          setSelectRole?.(false);
+        }}
+      >
+        <IoMdArrowRoundBack />
+      </div>
       <h1>Select Your Professional Role</h1>
       <div className="roles">
         <button
           onClick={() => {
-            setRole("influencer");
+            setRole("Influencer");
             setOpenPasswordModal?.(true);
             setSelectRole?.(false);
           }}
@@ -26,7 +36,7 @@ export const RoleSelector: React.FC<RoleSelectorProps> = ({
         </button>
         <button
           onClick={() => {
-            setRole("brand");
+            setRole("Brand");
             setOpenPasswordModal?.(true);
             setSelectRole?.(false);
           }}
@@ -45,13 +55,24 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #fff;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 5rem;
   box-shadow: 0 3px 26px rgba(0, 0, 0, 0.06);
+
+  .back {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    background-color: #eee;
+    border-radius: 50%;
+  }
 
   .roles {
     display: flex;
@@ -61,14 +82,15 @@ const Container = styled.div`
     button {
       padding: 0.5rem 2rem;
       border-radius: 5px;
-      border: 2px solid #fc9494;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      border: 1px solid #eee;
+      box-shadow: none;
       cursor: pointer;
+      font-family: inherit;
     }
 
     button:hover {
-      background-color: #fc9494;
-      color: white;
+      border: 1px solid #dd4c4c;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     }
   }
 `;

@@ -8,16 +8,19 @@ import CampaignList from "../pages/campaign";
 import { Notification } from "../pages/notification";
 import { Influencers } from "../pages/influencers";
 import { BrandProfile } from "../pages/brandProfile";
+import { useAuth } from "../contexts/authContext";
 
 
 export const InfluencerRoutes = () => {
+  const { user } = useAuth();
 
   return (
     <RouteContainer>
       <div className="route">
         <Sidebar/>
-        <Routes>
-          <Route path="/" element={<BrandProfile />} />
+        <Routes>\
+          {user?.role === "Influencer" && <Route path="/" element={<InfluencerProfile />} />}
+          {user?.role === "Brand" && <Route path="/" element={<BrandProfile />} />}
           <Route path="messages" element={<Message/>}/>
           <Route path="campaigns" element={<CampaignList/>} />
           <Route path="notifications" element={<Notification/>}/>

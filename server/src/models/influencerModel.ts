@@ -3,7 +3,7 @@ import { IInfluencer } from "../interfaces/IInfluencer";
 import { UserRole } from "../utils/userRoles";
 
 const influencerSchema = new mongoose.Schema<IInfluencer>({
-  username: { type: String, required: true },
+  fullName: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
   role: {
@@ -12,16 +12,16 @@ const influencerSchema = new mongoose.Schema<IInfluencer>({
     enum: Object.values(UserRole),
     default: UserRole.influencer,
   },
-  profilePictureUrl: { type: String, required: true },
-  bio: { type: String, required: true },
-  location: { type: String, required: true },
-  niche: { type: String, required: true },
+  profilePictureUrl: { type: String, required: false },
+  bio: { type: String, required: false },
+  location: { type: String, required: false },
+  niche: { type: String, required: false },
   socialMediaAccounts: [
     {
       platform: { type: String, required: true },
       username: { type: String, required: true },
-      followerCount: { type: Number, required: true },
-      engagementRate: { type: Number, required: true },
+      followerCount: { type: Number, required: false },
+      engagementRate: { type: Number, required: false },
     },
   ],
   campaignHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],

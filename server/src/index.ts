@@ -4,12 +4,14 @@ import bodyParser from "body-parser";
 import cors from "cors"
 import mongoose from "mongoose";
 import authRoute from "./routes/authRoute";
-
+import dotenv from "dotenv";
+import { dot } from "node:test/reporters";
 
 
 
 const app = express();
 const port = 5000;
+dotenv.config();
 
 // Middleware
 app.use(bodyParser.json());

@@ -3,7 +3,7 @@ import { UserRole } from "../utils/userRoles";
 
 export interface IInfluencer {
     _id: ObjectId;
-    username: string;
+    fullName: string;
     password: string;
     email: string;
     role: UserRole;

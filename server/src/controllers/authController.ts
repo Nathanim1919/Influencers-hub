@@ -13,48 +13,43 @@ enum UserRole {
   Influencer = "Influencer",
 }
 
+// Potential abstraction for checking email existence
+async function checkEmailExists(email) {
+  const brandExists = await Brand.findOne({ email });
+  const influencerExists = await Influencer.findOne({ email });
+  return brandExists || influencerExists;
+}
+
 export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password, role } = req.body;
+      const attributes = role === UserRole.Brand ? 
+        { ...req.body, brandAttributes: { brandName: req.body.brandName } } : 
+        { ...req.body, influencerAttributes: { fullName: req.body.fullName, niche: req.body.niche, location: req.body.location } };
 
-      // Validate role
       if (!Object.values(UserRole).includes(role)) {
         res.status(400).json({ error: "Invalid user role" });
         return;
       }
 
-      // Check for existing user with the same email
-      const existingUser = await Brand.findOne({ email }) || await Influencer.findOne({ email });
-      if (existingUser) {
+      if (await checkEmailExists(email)) {
         res.status(400).json({ error: "Email already exists" });
-        return
+        return;
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      let user = null;
-
-      if (role === UserRole.Brand) {
-        user = new Brand({
-          ...req.body,
-          password: hashedPassword,
-        });
-      } else {
-        user = new Influencer({
-          ...req.body,
-          password: hashedPassword,
-        });
-      }
+      const user = role === UserRole.Brand ? new Brand({ ...attributes, password: hashedPassword }) : 
+                                              new Influencer({ ...attributes, password: hashedPassword });
 
       await user.save();
 
-      const successMessage = `${role} registered successfully`;
-      res.status(201).json(new ApiResponse(201, user, successMessage));
+      // Ensure sensitive data is not sent back
+      const { password: _, ...userResponse } = user.toObject();
+      res.status(201).json(new ApiResponse(201, userResponse, `${role} registered successfully`));
     } catch (error) {
-      if (error instanceof Error)
-        res.status(400).json({ error: error.message });
-      else
-        res.status(500).json({ error: "An unknown error has occurred" });
+      const statusCode = error instanceof Error ? 400 : 500;
+      res.status(statusCode).json({ error: error.message || "An unknown error has occurred" });
     }
   }
 );
@@ -166,6 +161,17 @@ export const myAccount = asyncHandler(
 export const logout = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
+       // Check for JWT secrets availability
+       if (
+        !process.env.JWT_ACCESS_TOKEN_SECRET ||
+        !process.env.JWT_REFRESH_TOKEN_SECRET
+      ) {
+        console.error(
+          "JWT secrets are not defined in the environment variables."
+        );
+        res.status(500).json({ message: "Internal server error" });
+        return;
+      }
       // Remove the refresh token from redis
       const { accessToken, refreshToken } = req.cookies;
       if (!accessToken || !refreshToken) {
@@ -174,7 +180,7 @@ export const logout = asyncHandler(
 
       const { _id } = jwt.verify(
         accessToken,
-        "process.env.JWT_ACCESS_TOKEN_SECRET!"
+        process.env.JWT_ACCESS_TOKEN_SECRET
       ) as { _id: string };
       await redisClient.del(`refresh_${_id}`);
 
