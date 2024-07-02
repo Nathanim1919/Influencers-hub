@@ -8,6 +8,16 @@ export const CampaignDetailContainer = styled.div`
     background-color: #fff;
     overflow-y: auto;
     height: 100vh;
+    animation: animate 0.2s ease-in-out;
+
+    @keyframes animate {
+        0% {
+            transform: translateY(30%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
 
     >*{
         padding: 1rem;
@@ -40,12 +50,37 @@ export const CampaignDetailContainer = styled.div`
             margin: 0;
         }
         }
-        .budget {
-        font-size: 1rem;
-        color: #6b6b6b;
+       .editCampaign{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #e27070;
+            color: white;
         }
+        p {
+            font-size: 1rem;
+            color: #ffffff;
+            margin: 0;
+            background-color: #c3d09c;
+            padding: 0.3rem 1rem;
+            border-radius: 1rem;
+        }
+        
+       }
     }
     .description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         h2 {
         font-size: 1.2rem;
         font-weight: bold;

@@ -3,7 +3,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from "ax
 const apiClient = axios.create({
   baseURL: "http://localhost:5000/api",
   withCredentials: true, // Necessary for cookies to be sent with requests
-  timeout: 10000, // 10 seconds timeout
+  // timeout: 10000, // 10 seconds timeout
 });
 
 // Request Interceptor with type assertion

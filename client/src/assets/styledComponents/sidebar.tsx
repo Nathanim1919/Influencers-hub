@@ -30,6 +30,7 @@ export const SidebarContainer = styled.div`
   justify-content: start;
   position: sticky;
   left: 0;
+  overflow: hidden;
 
   a.active {
     border-right: 5px solid red;
@@ -39,7 +40,7 @@ export const SidebarContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    transition: width 2s ease-in-out;
+    transition: width 1s ease-in-out;
     padding: 0.4rem 1rem;
 
     &:hover {

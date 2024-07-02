@@ -32,14 +32,14 @@ export const Sidebar: React.FC = () => {
           <BiMessage size={30} />
           <span>Messages</span>
         </Link>
-        <Link to="campaigns">
+        {user?.role === "Influencer" && <Link to="campaigns">
           <MdOutlineCampaign size={30} />
           <span>Campaign</span>
-        </Link>
-        <Link to="influencers">
+        </Link>}
+        {user?.role === "Brand" && <Link to="influencers">
           <MdOutlineCampaign size={30} />
           <span>Influencers</span>
-        </Link>
+        </Link>}
         <Link to="settings">
           <IoSettingsOutline size={30} />
           <span>Settings</span>
@@ -63,7 +63,7 @@ export const Sidebar: React.FC = () => {
           <div className="profilePic">
             <img src={ProfileImage} alt="profile" />
           </div>
-          <span>{user?.email}</span>
+          <span>{user?.brandName || user?.fullName}</span>
         </Link>
       </div>
     </SidebarContainer>

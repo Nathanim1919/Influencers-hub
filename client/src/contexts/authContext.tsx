@@ -64,7 +64,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     requestHandler(
       async () => await authApi.myAccount(),
       setLoading,
-      (data) => {setUser(data as IUser);
+      (data) => {
+        setUser(data as IUser);
+        console.log(data);
         navigate("/influencer");
       },
       ()=>{console.log("error")}

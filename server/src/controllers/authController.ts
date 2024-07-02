@@ -24,9 +24,17 @@ export const register = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password, role } = req.body;
-      const attributes = role === UserRole.Brand ? 
-        { ...req.body, brandAttributes: { brandName: req.body.brandName } } : 
-        { ...req.body, influencerAttributes: { fullName: req.body.fullName, niche: req.body.niche, location: req.body.location } };
+      const attributes =
+        role === UserRole.Brand
+          ? { ...req.body, brandAttributes: { brandName: req.body.brandName } }
+          : {
+              ...req.body,
+              influencerAttributes: {
+                fullName: req.body.fullName,
+                niche: req.body.niche,
+                location: req.body.location,
+              },
+            };
 
       if (!Object.values(UserRole).includes(role)) {
         res.status(400).json({ error: "Invalid user role" });
@@ -39,17 +47,25 @@ export const register = asyncHandler(
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = role === UserRole.Brand ? new Brand({ ...attributes, password: hashedPassword }) : 
-                                              new Influencer({ ...attributes, password: hashedPassword });
+      const user =
+        role === UserRole.Brand
+          ? new Brand({ ...attributes, password: hashedPassword })
+          : new Influencer({ ...attributes, password: hashedPassword });
 
       await user.save();
 
       // Ensure sensitive data is not sent back
       const { password: _, ...userResponse } = user.toObject();
-      res.status(201).json(new ApiResponse(201, userResponse, `${role} registered successfully`));
+      res
+        .status(201)
+        .json(
+          new ApiResponse(201, userResponse, `${role} registered successfully`)
+        );
     } catch (error) {
       const statusCode = error instanceof Error ? 400 : 500;
-      res.status(statusCode).json({ error: error.message || "An unknown error has occurred" });
+      res
+        .status(statusCode)
+        .json({ error: error.message || "An unknown error has occurred" });
     }
   }
 );
@@ -101,7 +117,7 @@ export const login = asyncHandler(
 
       const refreshToken = jwt.sign(
         { _id: user._id, role: role },
-        process.env.JWT_ACCESS_TOKEN_SECRET,
+        process.env.JWT_REFRESH_TOKEN_SECRET,
         { expiresIn: "7d" } // 7dasy
       );
 
@@ -130,39 +146,12 @@ export const login = asyncHandler(
   }
 );
 
-export const myAccount = asyncHandler(
-  async (req: Request, res: Response): Promise<void> => {
-    try {
-      // Find the brand by the ID stored in the JWT token
-      const { accessToken } = req.cookies;
-      if (!accessToken) {
-        throw new Error("Unauthorized");
-      }
-
-      const { _id } = jwt.verify(
-        accessToken,
-        "process.env.JWT_ACCESS_TOKEN_SECRET!"
-      ) as { _id: string };
-      const brand = await Brand.findById(_id);
-      if (!brand) {
-        throw new Error("Brand not found");
-      }
-
-      // Respond with the brand
-      res.status(200).json(new ApiResponse(200, brand, "Brand found"));
-    } catch (error) {
-      if (error instanceof Error)
-        res.status(500).json({ error: error?.message });
-      else res.status(500).json({ error: "An unknown error occured" });
-    }
-  }
-);
 
 export const logout = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
-       // Check for JWT secrets availability
-       if (
+      // Check for JWT secrets availability
+      if (
         !process.env.JWT_ACCESS_TOKEN_SECRET ||
         !process.env.JWT_REFRESH_TOKEN_SECRET
       ) {

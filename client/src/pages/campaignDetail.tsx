@@ -1,25 +1,39 @@
 import React from 'react';
 import {CampaignDetailContainer} from '../assets/styledComponents/campaignDetailStyle';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
-export const CampaignDetail: React.FC = () => {
+interface CampaignDetailProps {
+    setSelectedCampaign?: (campaign: any) => void;
+    editCampaign?: boolean;
+}
+
+export const CampaignDetail: React.FC<CampaignDetailProps> = ({setSelectedCampaign, editCampaign}) => {
     return (
         <CampaignDetailContainer>
             <div className="header">
+                {<IoMdArrowRoundBack onClick={()=>setSelectedCampaign(null)} style={{
+                    cursor: "pointer",
+                    padding: ".25rem",
+                    backgroundColor: "#dfd8d8",
+                    fontSize: "1.7rem",
+                    borderRadius: "50%",
+                }} />}
                 <h1>Summer Vibes Collection</h1>
                 <p>BeachWear Co.</p>
             </div>
             <div className="moreInfo">
                 <div className="date">
                     <p>
-                        <strong>Start:</strong> July 1, 2024
+                        <strong>Started on: </strong> July 1, 2024
                     </p>
                     <p>
-                        <strong>End:</strong> July 31, 2024
+                        <strong>Until: </strong> July 31, 2024
                     </p>
                 </div>
-                <p className="budget">
-                    <strong>Budget:</strong> $1500
-                </p>
+                <div className="editCampaign">
+                  {editCampaign &&  <button>Edit Campaign</button>}
+                    <p>50000 ETB</p>
+                </div>
             </div>
             <div className="description">
                 <h2>Description</h2>

@@ -3,6 +3,8 @@ import { RecentPosts } from "../components/influencerProfiles/recentPosts";
 import { SocialMediaMetrics } from "../components/influencerProfiles/socialMediaMetrics";
 import MyImage from "../assets/influencerProfileImages/a.jpeg"
 import { SponsoredPosts } from "../components/influencerProfiles/sponsoredPosts";
+import { IoSaveOutline } from "react-icons/io5";
+
 
 export const InfluencerProfile: React.FC = () => {
   return (

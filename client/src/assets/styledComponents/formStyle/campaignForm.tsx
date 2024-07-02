@@ -18,8 +18,6 @@ export const CampaignFormContainer = styled.div<InfluencersSearchContainerProps>
     padding-bottom: 1rem;
     z-index: 1000;
 
-
-
     form{
         >*{
             padding:.3rem 1rem;

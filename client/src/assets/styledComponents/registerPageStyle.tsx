@@ -15,17 +15,12 @@ export const RegisterPageContainer = styled.div`
 
   @keyframes animateUp {
     0% {
-      transform: translateY(100px);
-      opacity: 0;
-      visibility: hidden;
-    }
-    50% {
-      opacity: 1;
-      visibility: visible;
+      transform:  scale(0.5);
+      /* visibility: hidden; */
     }
     100% {
-      transform: translateY(0);
-      opacity: 1;
+      transform:  scale(1);
+      /* opacity: 1; */
       /* visibility: visible; */
     }
   }

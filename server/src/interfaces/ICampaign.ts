@@ -1,6 +1,8 @@
+import { ObjectId } from "mongoose";
+
 export interface ICampaign {
     id: string;
-    brandId: string;
+    brandId: ObjectId;
     title: string;
     description: string;
     objectives: string[];
