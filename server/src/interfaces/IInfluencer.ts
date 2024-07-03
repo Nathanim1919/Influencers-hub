@@ -18,6 +18,8 @@ export interface IInfluencer {
         engagementRate: number;
     }[];
     campaignHistory: string[];
+    savedCampaigns: string[];
+    appliedCampaigns: string[];
     createdAt: Date;
     updatedAt: Date;
 }

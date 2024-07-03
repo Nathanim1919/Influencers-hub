@@ -1,7 +1,7 @@
 import { IBrand } from "./brandInterface";
 
 export interface Campaign {
-    id: number;
+    _id: string;
     brandId: IBrand;
     campaignName?: string;
     title?: string;

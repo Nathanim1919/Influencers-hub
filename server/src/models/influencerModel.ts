@@ -25,6 +25,8 @@ const influencerSchema = new mongoose.Schema<IInfluencer>({
     },
   ],
   campaignHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],
+  savedCampaigns: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],
+  appliedCampaigns: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

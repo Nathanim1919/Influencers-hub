@@ -17,7 +17,7 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
   return (
     <CampaignDetailContainer>
       <div className="header">
-        {
+        {editCampaign &&
           <IoMdArrowRoundBack
             onClick={() => setSelectedCampaign && setSelectedCampaign(null)}
             style={{
@@ -31,16 +31,34 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
         }
         <h1>{campaign?.title}</h1>
         <p>{campaign?.brandId.brandName}</p>
+        {!editCampaign &&  
+        <span
+            onClick={() => setSelectedCampaign && setSelectedCampaign(null)}
+            style={{
+              cursor: "pointer",
+              padding: ".25rem 1rem",
+              borderRadius: ".5rem",
+              backgroundColor: "#eee",
+              fontSize: "1rem",
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+            }}
+          >Back</span>}
       </div>
       <div className="moreInfo">
         <div className="date">
           <p>
-            <strong>Started on: </strong>{" "}
-            {campaign?.timeline?.startDate?.toLocaleDateString()}
+            <span>Start Date:</span>{" "}
+            {campaign?.timeline?.startDate
+              ? new Date(campaign.timeline.startDate).toDateString()
+              : "N/A"}
           </p>
           <p>
-            <strong>Until: </strong>{" "}
-            {campaign?.timeline?.endDate?.toLocaleDateString()}
+            <span>End Date:</span>{" "}
+            {campaign?.timeline?.endDate
+              ? new Date(campaign.timeline.endDate).toDateString()
+              : "N/A"}
           </p>
         </div>
         <div className="editCampaign">

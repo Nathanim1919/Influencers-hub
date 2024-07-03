@@ -107,5 +107,15 @@ export const CampaignCardContainer = styled.div`
         background-color: #e3e3e3;
       }
     }
+
+    button.applied {
+      background-color: #459fff;
+      color: #ffffff;
+    }
+
+    button.saved {
+      background-color: #3464f4;
+      color: #ffffff;
+    }
   }
 `;

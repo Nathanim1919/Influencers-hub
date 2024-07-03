@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import authRoute from "./routes/authRoute";
 import campaignRoute from "./routes/campaignRoutes";
 import brandRoute from "./routes/brandRoutes";
+import influencerApi from "./routes/influencerRoutes";
 
 import dotenv from "dotenv";
 import { dot } from "node:test/reporters";
@@ -43,6 +44,7 @@ mongoose
 app.use("/api/auth", authRoute);
 app.use("/api/campaigns", campaignRoute);
 app.use("/api/brand", verifyUser, brandRoute);
+app.use("/api/influencer", verifyUser, influencerApi);
 
 // Start the server
 app.listen(port, () => {
