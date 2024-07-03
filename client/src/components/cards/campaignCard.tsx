@@ -4,24 +4,18 @@ import CampaignImage from '../../assets/influencerProfileImages/a.jpeg'
 import { IoSaveOutline } from "react-icons/io5";
 import { TbListDetails } from "react-icons/tb";
 import { GrSend } from "react-icons/gr";
+import { Campaign } from "../../interfaces/campaignInterface";
 
 
 
 interface CampaignCardProps {
-  title: string;
-  brand: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  budget: number;
+  campaign: Campaign;
+  setSelectedCampaign?: (campaign: Campaign) => void;
 }
 
 const CampaignCard: React.FC<CampaignCardProps> = ({
-  title,
-  brand,
-  description,
-  endDate,
-  budget,
+  campaign,
+  setSelectedCampaign
 }) => {
   return (
     <CampaignCardContainer>
@@ -30,23 +24,30 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
           <img src={CampaignImage} alt="campaign" />
         </div>
         <div className="info">
-          <h3 className="brand">{brand}</h3>
+          <h3 className="brand">{campaign.brandId.brandName}</h3>
           <div className="date">
             <p>
-              <strong>End:</strong> {endDate}
+             {/* {campaign.timeline?.endDate} */}
             </p>
           </div>
           <p className="budget">
-            <strong>Budget:</strong> ${budget}
+            <strong>Budget:</strong> ${campaign.budget}
           </p>
         </div>
       </div>
       <div className="diescription">
-      <h3 className="text-lg font-bold">{title}</h3>
-      <p className="description">{description}</p>
+      <h3 className="text-lg font-bold">{campaign.title}</h3>
+      <p className="description">{campaign.description}</p>
       </div>
       <div className="btns">
-        <button className="viewDetail"><TbListDetails/>Details</button>
+      <button onClick={() => {
+  console.log("Attempting to set selected campaign with:", campaign);
+  if (setSelectedCampaign) {
+    setSelectedCampaign(campaign);
+  } else {
+    console.log("setSelectedCampaign is not provided.");
+  }
+}} className="viewDetail"><TbListDetails/>Details</button>
         <button className="apply"><GrSend/>Apply</button>
         <button className="saveForPreview"><IoSaveOutline/>Save</button>
       </div>

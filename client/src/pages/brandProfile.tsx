@@ -10,11 +10,11 @@ import { Campaign } from "../interfaces/campaignInterface";
 import { TbListDetails } from "react-icons/tb";
 import { CampaignDetail } from "./campaignDetail";
 
-
-
 export const BrandProfile: React.FC = () => {
   const [opencreateForm, setOpencreateForm] = useState(false);
-  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(
+    null
+  );
   const [editBio, setEditBio] = useState(false);
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
@@ -27,16 +27,13 @@ export const BrandProfile: React.FC = () => {
       (response) => {
         setCampaigns(response);
       },
-      alert     
+      alert
     );
   };
-  
+
   useEffect(() => {
     fetchCampaigns();
   }, []);
-
-
-
 
   return (
     <BrandProfileContainer>
@@ -55,12 +52,20 @@ export const BrandProfile: React.FC = () => {
           </div>
           <h1>{user?.brandName}</h1>
           <div className="brandBio">
-              <MdEdit onClick={()=>setEditBio(true)}/>
-              <p>We are a dedicate and profitable brand around the globe.</p>
-              {editBio && <form action="">
-                <textarea name="" id="" cols={5} rows={3} placeholder="Write your bio"></textarea>
+            <MdEdit onClick={() => setEditBio(true)} />
+            <p>We are a dedicate and profitable brand around the globe.</p>
+            {editBio && (
+              <form action="">
+                <textarea
+                  name=""
+                  id=""
+                  cols={5}
+                  rows={3}
+                  placeholder="Write your bio"
+                ></textarea>
                 <input type="submit" value="Save"></input>
-              </form>}
+              </form>
+            )}
           </div>
         </div>
 
@@ -83,40 +88,50 @@ export const BrandProfile: React.FC = () => {
         </div>
       </div>
       <div className="moreinfos">
-          {!selectedCampaign && <div className="header">
+        {!selectedCampaign && (
+          <div className="header">
             <h1>Your Cataloge</h1>
             <button onClick={() => setOpencreateForm(true)}>
               Create New Campaign
             </button>
-          </div>}
-       {!selectedCampaign &&  <div className="campaigns">
-          <div className="campaginLists">
-            {campaigns?.map((campaign: Campaign) => (
-            <div className="campaign">
-              <div className="campaignImage">
-                <img src={PrifleImage} alt="campaign" />
-              </div>
-              <div className="info">
-                <h3 className="brand">{campaign.title}</h3>
-                <div className="date">
-                  <p>
-                    Until {campaign?.timeline?.endDate}
-                  </p>
-                </div>
-                <p className="budget">
-                  <strong>Budget:</strong> {campaign.budget}
-                </p>
-              </div>
-              <div className="moreInfo">
-              </div>
-              <div className="bootmLinks">
-              <button onClick={() => setSelectedCampaign(campaign)}><TbListDetails/>Details</button>
-              </div>
-            </div>
-            ))}
           </div>
-        </div>}
-      {selectedCampaign && <CampaignDetail setSelectedCampaign={setSelectedCampaign} editCampaign={true}/>}
+        )}
+        {!selectedCampaign && (
+          <div className="campaigns">
+            <div className="campaginLists">
+              {campaigns?.map((campaign: Campaign) => (
+                <div className="campaign">
+                  <div className="campaignImage">
+                    <img src={PrifleImage} alt="campaign" />
+                  </div>
+                  <div className="info">
+                    <h3 className="brand">{campaign.title}</h3>
+                    <div className="date">
+                      <p>Until {campaign?.timeline?.endDate}</p>
+                    </div>
+                    <p className="budget">
+                      <strong>Budget:</strong> {campaign.budget}
+                    </p>
+                  </div>
+                  <div className="moreInfo"></div>
+                  <div className="bootmLinks">
+                    <button onClick={() => setSelectedCampaign(campaign)}>
+                      <TbListDetails />
+                      Details
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {selectedCampaign && (
+          <CampaignDetail
+            campaign={selectedCampaign}
+            setSelectedCampaign={setSelectedCampaign}
+            editCampaign={true}
+          />
+        )}
       </div>
     </BrandProfileContainer>
   );

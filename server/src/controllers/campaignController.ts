@@ -36,3 +36,20 @@ export const createCampaign = async (req: Request, res: Response) => {
   };
 
 
+
+export const getAllCampaigns = async (req: Request, res: Response) => {
+  try{
+    const campaigns = await Campaign.find().populate('brandId');
+
+    res.status(201).json(
+      new ApiResponse(201, campaigns, "Campaigns Fetched SuccessFully")
+    )
+  } catch (error) {
+    if (error instanceof Error){
+      res.status(500).send(error.message);
+    } else {
+      res.status(500).send({message:"An Unknown Error Has occured"})
+    }
+  }
+}
+
