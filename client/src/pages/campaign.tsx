@@ -102,7 +102,7 @@ const CampaignList: React.FC = () => {
           campaign={selectedCampaign}
         />
       )}
-      <SavedCampaign savedCampaigns={savedCampaigns} />
+      <SavedCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} savedCampaigns={savedCampaigns} appliedCampaigns={appliedCampaigns}/>
     </CampaignListContainer>
   );
 };
