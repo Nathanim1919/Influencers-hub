@@ -4,10 +4,29 @@ import ApiResponse from "../utils/apiResponse";
 
 export const getInfluencers = async (req: Request, res: Response) => {
   try {
-    const influencers = await Influencer.find();
-    res.status(200).json({ influencers });
+    // get Params called filter
+    const filter = req.query.filter;
+    if (filter && (filter !== "all")) {
+      const influencers = await Influencer.find({ niches: filter });
+      res.status(200).json(new ApiResponse(
+        200,
+        influencers,
+        "Influencers"
+      ));
+    } else {
+      const influencers = await Influencer.find();
+      res.status(200).json(new ApiResponse(
+        200,
+        influencers,
+        "Influencers"
+      ));
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An Unknown Error has Occured!" });
+    }
   }
 };
 
@@ -16,7 +35,11 @@ export const getInfluencer = async (req: Request, res: Response) => {
     const influencer = await Influencer.findById(req.params.id);
     res.status(200).json({ influencer });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An Unknown Error has Occured!" });
+    }
   }
 };
 

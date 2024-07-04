@@ -4,8 +4,8 @@ const getInfluencer = async (id: string) => {
   return apiClient.get(`/influencers/${id}`);
 };
 
-const getInfluencers = async () => {
-  return apiClient.get("/influencers");
+const getInfluencers = async (filter: string) => {
+  return apiClient.get("/influencer", { params: { filter } });
 };
 
 const saveInfluencer = async (influencerId: string) => {
