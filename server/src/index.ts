@@ -43,7 +43,7 @@ mongoose
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api/campaigns", campaignRoute);
-app.use("/api/brand", verifyUser, brandRoute);
+app.use("/api/brands", verifyUser, brandRoute);
 app.use("/api/influencer", verifyUser, influencerApi);
 
 // Start the server

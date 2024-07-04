@@ -43,7 +43,7 @@ const setPerformanceMetrics = async (id: number, performanceMetrics: Partial<Cam
 };
 
 const getBrandCampaigns = async () => {
-    return await apiClient.get("/brand/campaigns");
+    return await apiClient.get("/brands/campaigns");
 };
 
 

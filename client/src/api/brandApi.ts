@@ -5,6 +5,20 @@ export interface Brand {
   brandName?: string;
 }
 
-export const editBrand = async (brand: Partial<Brand>) => {
+const editBrand = async (brand: Partial<Brand>) => {
   return await apiClient.put(`/brands/${brand.id}`, brand);
+};
+
+const saveInfluencer = async (influencerId: string) => {
+  return await apiClient.post("/brands/saveInfluencer", { influencerId });
+};
+
+const getSavedInfluencers = async () => {
+  return await apiClient.get("/brands/savedInfluencers");
+};
+
+export default {
+  editBrand,
+  saveInfluencer,
+  getSavedInfluencers
 };

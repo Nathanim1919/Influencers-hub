@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Influencer } from "../interfaces/influencerInterface";
-import { influencerApi } from "../api";
+import brandApi from "../api/brandApi";
 import { requestHandler } from "../utils";
 import { useParams } from "react-router-dom";
 import { InfluencerListContainer } from "../assets/styledComponents/influencerListStyle";
@@ -8,6 +8,8 @@ import { LuMessageSquare } from "react-icons/lu";
 import { IoSaveOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import AvatorImage from '../assets/heroImages/avator.jpg'
+import { LiaSaveSolid } from "react-icons/lia";
+
 
 export const InfluencerList: React.FC = () => {
   const getFromLocalStorage = (key: string) => {
@@ -15,7 +17,7 @@ export const InfluencerList: React.FC = () => {
     return data ? JSON.parse(data) : null;
   };
 
-  const saveToLocalStorage = (key: string, data: any) => {
+  const saveToLocalStorage = (key: string, data: Influencer) => {
     localStorage.setItem(key, JSON.stringify(data));
   };
 
@@ -23,6 +25,7 @@ export const InfluencerList: React.FC = () => {
     getFromLocalStorage("filteredInfluncers")
   );
   const [loading, setLoading] = useState(false);
+  const [displaySavedInfluencers, setDisplaySavedInfluencers] = useState(false);
   const { filterParam } = useParams();
 
   useEffect(() => {
@@ -31,8 +34,9 @@ export const InfluencerList: React.FC = () => {
   }, [influencers]);
 
   const getInfluncers = async () => {
+    const apiEndPoint = displaySavedInfluencers?brandApi.getSavedInfluencers:brandApi.getInfluencers;
     await requestHandler(
-      async () => influencerApi.getInfluencers(filterParam!),
+      async () => apiEndPoint(filterParam!),
       setLoading,
       (data: Influencer[]) => {
         setInfluencers(data);
@@ -44,12 +48,28 @@ export const InfluencerList: React.FC = () => {
 
   useEffect(() => {
     getInfluncers();
-  }, [filterParam]);
+  }, [filterParam, displaySavedInfluencers]);
+
+
+  // save influencer
+  const saveInfluencer = async (influencerId: string) => {
+    await requestHandler(
+      async () => brandApi.saveInfluencer(influencerId),
+      setLoading,
+      (data) => {
+        console.log(data);
+      },
+      alert
+    );
+  };
 
   return (
     <InfluencerListContainer>
       <div className="topheader">
         <h1>Influencer List</h1>
+        <button onClick={()=>setDisplaySavedInfluencers(!displaySavedInfluencers)} className="mySavedInfluencers">
+          <LiaSaveSolid/>{displaySavedInfluencers?"See All":"Saved Influencers"}
+        </button>
       </div>
       <div className="influncerLists">
         {influencers?.map((influncer) => (
@@ -76,7 +96,7 @@ export const InfluencerList: React.FC = () => {
               <div className="btns">
                 <button className="profile"><FaRegUser/>Profile</button>
                 <button className="message"><LuMessageSquare/>Message</button>
-                <button className="save"><IoSaveOutline/>Save</button>
+                <button onClick={()=> saveInfluencer(influncer?._id)} className="save"><IoSaveOutline/>Save</button>
               </div>
             </div>
           </div>

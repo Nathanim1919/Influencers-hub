@@ -1,7 +1,7 @@
 import { Campaign } from "./campaignInterface";
 
 export interface Influencer {
-    id: number;
+    _id: string;
     fullName?: string;
     password?: string;
     email?: string;
