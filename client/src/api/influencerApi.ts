@@ -16,8 +16,8 @@ const saveCampaign = async (campaignId: string) => {
   return apiClient.post("/influencer/savecampaign", campaignId);
 };
 
-const applyToCampaign = async (campaignId: string) => {
-  return apiClient.post("/influencer/apply", campaignId);
+const applyToCampaign = async (campaignId: string, proposal: string) => {
+  return apiClient.post("/influencer/apply", {campaignId, proposal});
 };
 
 const getSavedCampaigns = async () => {

@@ -9,5 +9,6 @@ declare module 'express-serve-static-core' {
       role: UserRole;
       // Add other properties of the user object as needed
     }
+    app: Application;
   }
 }

@@ -36,7 +36,7 @@ export const SavedCampaign: React.FC<SavedCampaignProps> = ({
       <div className="header">
         <div className="div">
           <h1>My Campaigns</h1>
-          <p>Your saved Campaigns</p>
+          <p>{displaySaved?"Saved Campaigns":"Campaigns Applied"}</p>
         </div>
         <div className="list">
           <CiBoxList onClick={()=>setDisplayOptions(true)}/>

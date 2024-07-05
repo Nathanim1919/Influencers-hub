@@ -35,11 +35,6 @@ const campaignSchema = new mongoose.Schema<ICampaign>({
   approvedInfluencers: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Influencer" },
   ],
-  // performanceMetrics: {
-  //   reach: { type: Number, required: true },
-  //   engagement: { type: Number, required: true },
-  //   roi: { type: Number, required: true },
-  // },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

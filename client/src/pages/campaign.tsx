@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Campaign } from "../interfaces/campaignInterface";
 import { requestHandler } from "../utils";
 import { campaignApi, influencerApi } from "../api";
+import { Application } from "./application";
 
 const CampaignList: React.FC = () => {
   const saveToLocalStorage = (key: string, data: any) => {
@@ -18,6 +19,7 @@ const CampaignList: React.FC = () => {
   };
 
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>();
+  const [applyToCampaign, setapplyToCampaign] = useState<Campaign | null>();
   const [loading, setLoading] = useState(false);
   const [allCampaigns, setAllCampaigns] = useState<Campaign[] | null>(
     getFromLocalStorage("allCampaigns")
@@ -91,6 +93,7 @@ const CampaignList: React.FC = () => {
                 setSelectedCampaign={setSelectedCampaign}
                 setSavedCampaigns={setSavedCampaigns}
                 setAppliedCampaigns={setAppliedCampaigns}
+                setapplyToCampaign={setapplyToCampaign}
               />
             ))}
           </div>
@@ -99,10 +102,14 @@ const CampaignList: React.FC = () => {
       {selectedCampaign && (
         <CampaignDetail
           setSelectedCampaign={setSelectedCampaign}
+          setapplyToCampaign={setapplyToCampaign}
           campaign={selectedCampaign}
         />
       )}
-      <SavedCampaign selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} savedCampaigns={savedCampaigns} appliedCampaigns={appliedCampaigns}/>
+      {applyToCampaign && 
+        <Application  setSelectedCampaign={setSelectedCampaign} setAppliedCampaigns={setAppliedCampaigns} campaign={applyToCampaign}  closeModal={() => setapplyToCampaign(null)} /> 
+        }
+      <SavedCampaign setAppliedCampaigns={setAppliedCampaigns} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} savedCampaigns={savedCampaigns} appliedCampaigns={appliedCampaigns}/>
     </CampaignListContainer>
   );
 };

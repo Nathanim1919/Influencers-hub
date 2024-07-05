@@ -19,6 +19,11 @@ export const SocialMediaMetricsContainer = styled.div`
 
         .header{
             display: flex;
+            align-items: center;
+            padding: .4rem 2rem;
+        
+        div:nth-child(1){
+            display: flex;
             padding:.4rem;
             align-items: center;
             gap: 1rem;
@@ -41,6 +46,8 @@ export const SocialMediaMetricsContainer = styled.div`
                 }
             }
         }
+    }
+}
 
         img{
             width: 10%;
@@ -64,17 +71,18 @@ export const SocialMediaMetricsContainer = styled.div`
                 padding: .4rem;
 
                 h2{
-                    font-size: 1rem;
+                    font-size: 2rem;
                     font-weight: bold;
                     margin: 0;
                 }
 
                 p{
-                    font-size: .8rem;
+                    font-size: 1.1rem;
                     color: #0000006d;
                     margin: 0;
+                    font-weight: bold;
                 }
             }
         }
     }
-`
+`;

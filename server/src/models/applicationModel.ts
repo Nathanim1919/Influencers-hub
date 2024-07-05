@@ -6,10 +6,8 @@ const applicationSchema = new Schema<IApplication>({
   campaignId: { type: String, required: true },
   status: { type: String, required: true },
   Proposal: { type: String, required: true },
-  portfolio: [{ type: String, required: true }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  feedback: { type: String, required: true },
 });
 
 const Application = model<IApplication>("Application", applicationSchema);

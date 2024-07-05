@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+import { Server } from "socket.io";
+import {createServer} from "http";
 
 // routes
 import authRoute from "./routes/authRoute";
@@ -14,9 +16,37 @@ import dotenv from "dotenv";
 import { dot } from "node:test/reporters";
 import { verifyUser } from "./middlewares/authMiddleware";
 
-const app = express();
 const port = 5000;
 dotenv.config();
+
+
+
+const app = express();
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+  pingTimeout: 60000,
+  cors: {
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  },
+});
+/*
+io.use((socket, next) => {
+  const token = socket.handshake.auth.token;
+  if (!token) {
+    return next(new Error("Authentication error"));
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    socket.user = decoded;
+    next();
+  } catch (err) {
+    return next(new Error("Authentication error"));
+  }
+});
+*/
+app.set("io", io);
 
 // Middleware
 app.use(bodyParser.json());

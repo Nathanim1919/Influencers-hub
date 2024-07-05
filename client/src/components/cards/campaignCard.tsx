@@ -15,6 +15,7 @@ interface CampaignCardProps {
   setSelectedCampaign?: (campaign: Campaign) => void;
   setSavedCampaigns?: (campaignIds: Campaign[]) => void;
   setAppliedCampaigns?: (campaignIds: Campaign[]) => void;
+  setapplyToCampaign?: (campaign: Campaign) => void;
 }
 
 const CampaignCard: React.FC<CampaignCardProps> = ({
@@ -23,12 +24,12 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
   saved,
   applied,
   setSavedCampaigns,
-  setAppliedCampaigns,
+  setapplyToCampaign,
 }) => {
+
   const [loading, setLoading] = React.useState(false);
 
   const saveCampaign = async (campaign: Campaign, campaignId: string) => {
-    console.log("Attempting to save campaign with id:", campaignId);
     await requestHandler(
       async () => influencerApi.saveCampaign({ campaignId }),
       setLoading,
@@ -42,33 +43,11 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
             }
           });
         }
-        console.log("Campaign saved successfully", data);
       },
       alert
     );
   };
 
-  // functions for applying to a campaign
-  const applyToCampaign = async (campaign: Campaign, campaignId: string) => {
-    console.log("Attempting to apply to campaign with id:", campaignId);
-    await requestHandler(
-      async () => influencerApi.applyToCampaign({ campaignId }),
-      setLoading,
-      (data) => {
-        if (setAppliedCampaigns) {
-          setAppliedCampaigns((prev) => {
-            if (prev) {
-              return [...prev, campaign];
-            } else {
-              return [campaign];
-            }
-          });
-        }
-        console.log("Campaign applied successfully", data);
-      },
-      alert
-    );
-  };
 
   return (
     <CampaignCardContainer>
@@ -105,18 +84,18 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
           Details
         </button>
         <button
-          onClick={() => applyToCampaign(campaign, campaign?._id)}
+          onClick={() => setapplyToCampaign && setapplyToCampaign(campaign)}
           className={applied ? "apply applied" : "apply"}
         >
           <GrSend />
-          {!applied?"Apply":"Applied"}
+          {!applied ? "Apply" : "Applied"}
         </button>
         <button
           onClick={() => saveCampaign(campaign, campaign?._id)}
           className={saved ? "saveForPreview saved" : "saveForPreview"}
         >
           <IoSaveOutline />
-          {!saved?"Save":"Saved"}
+          {!saved ? "Save" : "Saved"}
         </button>
       </div>
     </CampaignCardContainer>

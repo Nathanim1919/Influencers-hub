@@ -64,7 +64,7 @@ export const SavedCampaignContainer = styled.div`
   }
 
   .campaignLists {
-    display: grid;
+    /* display: grid; */
     gap: 0.4rem;
     height: 90vh;
     overflow-y: auto;

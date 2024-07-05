@@ -7,17 +7,19 @@ interface CampaignDetailProps {
   setSelectedCampaign?: (campaign: Campaign | null) => void;
   editCampaign?: boolean;
   campaign?: Campaign;
+  setapplyToCampaign: (campaign: Campaign) => void;
 }
 
 export const CampaignDetail: React.FC<CampaignDetailProps> = ({
   setSelectedCampaign,
   editCampaign,
   campaign,
+  setapplyToCampaign
 }) => {
   return (
     <CampaignDetailContainer>
       <div className="header">
-        {editCampaign &&
+        {editCampaign && (
           <IoMdArrowRoundBack
             onClick={() => setSelectedCampaign && setSelectedCampaign(null)}
             style={{
@@ -28,12 +30,15 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
               borderRadius: "50%",
             }}
           />
-        }
+        )}
         <h1>{campaign?.title}</h1>
         <p>{campaign?.brandId.brandName}</p>
-        {!editCampaign &&  
-        <span
-            onClick={() => setSelectedCampaign && setSelectedCampaign(null)}
+        {!editCampaign && (
+          <span
+            onClick={() => {
+              setSelectedCampaign && setSelectedCampaign(null);
+              setapplyToCampaign(null);
+            }}
             style={{
               cursor: "pointer",
               padding: ".25rem 1rem",
@@ -44,7 +49,10 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
               top: "1rem",
               right: "1rem",
             }}
-          >Back</span>}
+          >
+            Back
+          </span>
+        )}
       </div>
       <div className="moreInfo">
         <div className="date">
@@ -74,10 +82,6 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
       <div className="description">
         <h2>Objective</h2>
         <p>{campaign?.objectives}</p>
-      </div>
-      <div className="btns">
-        <button className="apply">Apply</button>
-        <button className="saveForPreview">Save</button>
       </div>
     </CampaignDetailContainer>
   );

@@ -1,6 +1,8 @@
 import Influencer from "../models/influencerModel";
 import { Request, Response } from "express";
 import ApiResponse from "../utils/apiResponse";
+import Application from "../models/applicationModel";
+import Campaign from "../models/campaignModel";
 
 export const getInfluencers = async (req: Request, res: Response) => {
   try {
@@ -83,10 +85,24 @@ export const applyToCampaign = async (req: Request, res: Response) => {
     const influencer = await Influencer.findById(req.user?._id);
     if (influencer) {
       influencer.appliedCampaigns.push(req.body.campaignId);
+
+      const application = await Application.create({
+        influencerId: req.user?._id,
+        campaignId: req.body.campaignId,
+        status: "pending",
+        Proposal: req.body.proposal,
+      });
+
+      const campaign = await Campaign.findById(req.body.campaignId);
+      campaign?.applications.push(application._id);
+
+      await application.save();
+      await campaign?.save();
       await influencer.save();
+
       res
         .status(200)
-        .json(new ApiResponse(201, null, "Campaign applied successfully"));
+        .json(new ApiResponse(201, campaign, "Campaign applied successfully"));
     } else {
       res.status(404).json({ message: "Influencer not found" });
     }
