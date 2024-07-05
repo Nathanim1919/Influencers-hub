@@ -2,8 +2,7 @@ export interface IMessage {
     _id: string;
     senderId: string;
     receiverId: string;
-    campaignId: string;
-    message: string;
+    text: string;
     createdAt: Date;
     updatedAt: Date;
 }

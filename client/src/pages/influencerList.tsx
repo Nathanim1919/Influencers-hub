@@ -9,6 +9,7 @@ import { IoSaveOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import AvatorImage from '../assets/heroImages/avator.jpg'
 import { LiaSaveSolid } from "react-icons/lia";
+import { influencerApi } from "../api";
 
 
 export const InfluencerList: React.FC = () => {
@@ -24,23 +25,28 @@ export const InfluencerList: React.FC = () => {
   const [influencers, setInfluencers] = useState<Influencer[] | null>(
     getFromLocalStorage("filteredInfluncers")
   );
+  const [savedInfluencers, setSavedInfluencers] = useState<Influencer[] | null>(
+    getFromLocalStorage("savedInfluncers")
+  );
   const [loading, setLoading] = useState(false);
   const [displaySavedInfluencers, setDisplaySavedInfluencers] = useState(false);
   const { filterParam } = useParams();
 
   useEffect(() => {
-    setInfluencers(influencers);
+    displaySavedInfluencers ? setInfluencers(savedInfluencers) : setInfluencers(influencers);
     console.log("Influencers that I got: ", influencers);
-  }, [influencers]);
+  }, [displaySavedInfluencers, savedInfluencers, influencers]);
 
   const getInfluncers = async () => {
-    const apiEndPoint = displaySavedInfluencers?brandApi.getSavedInfluencers:brandApi.getInfluencers;
+    const apiEndPoint = displaySavedInfluencers?brandApi.getSavedInfluencers:influencerApi.getInfluencers;
     await requestHandler(
       async () => apiEndPoint(filterParam!),
       setLoading,
       (data: Influencer[]) => {
+        displaySavedInfluencers ? setSavedInfluencers(data) : setInfluencers(data);
         setInfluencers(data);
         saveToLocalStorage("filteredInfluncers", data);
+        saveToLocalStorage("savedInfluncers", data);
       },
       alert
     );
@@ -66,7 +72,7 @@ export const InfluencerList: React.FC = () => {
   return (
     <InfluencerListContainer>
       <div className="topheader">
-        <h1>Influencer List</h1>
+        <h1>{displaySavedInfluencers?"Saved Influencers":"Influencer List"}</h1>
         <button onClick={()=>setDisplaySavedInfluencers(!displaySavedInfluencers)} className="mySavedInfluencers">
           <LiaSaveSolid/>{displaySavedInfluencers?"See All":"Saved Influencers"}
         </button>

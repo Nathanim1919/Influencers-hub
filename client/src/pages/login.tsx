@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 h-screen items-center content-center">
+    <div className="grid grid-cols-1 h-screen items-center content-center">
       <div className="w-96 mx-auto mt-20">
         <h1 className="text-2xl font-semibold text-center">Login</h1>
         <form onSubmit={handleSubmit} className="">

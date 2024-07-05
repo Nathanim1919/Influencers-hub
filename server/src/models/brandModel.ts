@@ -23,6 +23,10 @@ const brandSchema = new Schema<IBrand>({
       ref: "Influencer",
     },
   ],
+  conversation:[ {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Conversation",
+  }],
   contactEmail: { type: String, required: false },
   phoneNumber: { type: String, required: false },
   location: { type: String, required: false },

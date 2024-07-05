@@ -14,6 +14,7 @@ export interface IBrand {
   contactPerson: string;
   contactEmail: string;
   phoneNumber?: string;
+  conversation: string[];
   savedInfluencers: string[];
   location: string;
   campaigns: string[];
