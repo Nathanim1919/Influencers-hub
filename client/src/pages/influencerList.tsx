@@ -6,10 +6,11 @@ import { useParams } from "react-router-dom";
 import { InfluencerListContainer } from "../assets/styledComponents/influencerListStyle";
 import { LuMessageSquare } from "react-icons/lu";
 import { IoSaveOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
-import AvatorImage from '../assets/heroImages/avator.jpg'
+import { FaInstagram, FaRegUser } from "react-icons/fa";
+import AvatorImage from "../assets/heroImages/avator.jpg";
 import { LiaSaveSolid } from "react-icons/lia";
 import { influencerApi } from "../api";
+import { CiLocationOn } from "react-icons/ci";
 
 
 export const InfluencerList: React.FC = () => {
@@ -33,17 +34,23 @@ export const InfluencerList: React.FC = () => {
   const { filterParam } = useParams();
 
   useEffect(() => {
-    displaySavedInfluencers ? setInfluencers(savedInfluencers) : setInfluencers(influencers);
+    displaySavedInfluencers
+      ? setInfluencers(savedInfluencers)
+      : setInfluencers(influencers);
     console.log("Influencers that I got: ", influencers);
   }, [displaySavedInfluencers, savedInfluencers, influencers]);
 
   const getInfluncers = async () => {
-    const apiEndPoint = displaySavedInfluencers?brandApi.getSavedInfluencers:influencerApi.getInfluencers;
+    const apiEndPoint = displaySavedInfluencers
+      ? brandApi.getSavedInfluencers
+      : influencerApi.getInfluencers;
     await requestHandler(
       async () => apiEndPoint(filterParam!),
       setLoading,
       (data: Influencer[]) => {
-        displaySavedInfluencers ? setSavedInfluencers(data) : setInfluencers(data);
+        displaySavedInfluencers
+          ? setSavedInfluencers(data)
+          : setInfluencers(data);
         setInfluencers(data);
         saveToLocalStorage("filteredInfluncers", data);
         saveToLocalStorage("savedInfluncers", data);
@@ -55,7 +62,6 @@ export const InfluencerList: React.FC = () => {
   useEffect(() => {
     getInfluncers();
   }, [filterParam, displaySavedInfluencers]);
-
 
   // save influencer
   const saveInfluencer = async (influencerId: string) => {
@@ -72,16 +78,23 @@ export const InfluencerList: React.FC = () => {
   return (
     <InfluencerListContainer>
       <div className="topheader">
-        <h1>{displaySavedInfluencers?"Saved Influencers":"Influencer List"}</h1>
-        <button onClick={()=>setDisplaySavedInfluencers(!displaySavedInfluencers)} className="mySavedInfluencers">
-          <LiaSaveSolid/>{displaySavedInfluencers?"See All":"Saved Influencers"}
+        <h1>
+          {displaySavedInfluencers ? "Saved Influencers" : "Influencer List"}
+        </h1>
+        <button
+          onClick={() => setDisplaySavedInfluencers(!displaySavedInfluencers)}
+          className="mySavedInfluencers"
+        >
+          <LiaSaveSolid />
+          {displaySavedInfluencers ? "See All" : "Saved Influencers"}
         </button>
       </div>
       <div className="influncerLists">
+        
         {influencers?.map((influncer) => (
           <div className="Influncer">
             <div className="header">
-              <p>{influncer.location}</p>
+              <p><CiLocationOn/>{influncer.location}</p>
               <p>23 Years Old</p>
             </div>
             <div className="body">
@@ -90,6 +103,10 @@ export const InfluencerList: React.FC = () => {
               </div>
               <div className="info">
                 <h1>{influncer.fullName}</h1>
+                <p className="instagramUsername">
+                  <FaInstagram />
+                  @NathanimTadele
+                </p>
                 <div className="niches">
                   {/* {influncer.niches?.map((niche) => (
                     <p>{niche}</p>
@@ -100,13 +117,26 @@ export const InfluencerList: React.FC = () => {
                 </div>
               </div>
               <div className="btns">
-                <button className="profile"><FaRegUser/>Profile</button>
-                <button className="message"><LuMessageSquare/>Message</button>
-                <button onClick={()=> saveInfluencer(influncer?._id)} className="save"><IoSaveOutline/>Save</button>
+                <button className="profile">
+                  <FaRegUser />
+                  Profile
+                </button>
+                <button className="message">
+                  <LuMessageSquare />
+                  Message
+                </button>
+                <button
+                  onClick={() => saveInfluencer(influncer?._id)}
+                  className="save"
+                >
+                  <IoSaveOutline />
+                  Save
+                </button>
               </div>
             </div>
           </div>
         ))}
+        {influencers?.length === 0 && <h1>No Influencers Found</h1>}
       </div>
     </InfluencerListContainer>
   );

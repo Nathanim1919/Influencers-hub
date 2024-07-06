@@ -105,7 +105,7 @@ export const BrandProfile: React.FC = () => {
                     <img src={PrifleImage} alt="campaign" />
                   </div>
                   <div className="info">
-                    <h3 className="brand">{campaign.title}</h3>
+                    <h3 className="brand">{(campaign.title)?.slice(0, 20)}...</h3>
                     <div className="date">
                       <p>Until {campaign?.timeline?.endDate}</p>
                     </div>
@@ -117,8 +117,9 @@ export const BrandProfile: React.FC = () => {
                   <div className="bootmLinks">
                     <button onClick={() => setSelectedCampaign(campaign)}>
                       <TbListDetails />
-                      Details
+                      See Details
                     </button>
+
                   </div>
                 </div>
               ))}

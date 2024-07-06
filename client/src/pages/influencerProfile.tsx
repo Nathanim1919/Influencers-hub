@@ -3,7 +3,7 @@ import { RecentPosts } from "../components/influencerProfiles/recentPosts";
 import { SocialMediaMetrics } from "../components/influencerProfiles/socialMediaMetrics";
 import MyImage from "../assets/influencerProfileImages/a.jpeg"
 import { SponsoredPosts } from "../components/influencerProfiles/sponsoredPosts";
-import { IoSaveOutline } from "react-icons/io5";
+import { CiEdit } from "react-icons/ci";
 
 
 export const InfluencerProfile: React.FC = () => {
@@ -24,11 +24,13 @@ export const InfluencerProfile: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="engagmentButtons">
-            <button>Save for preview</button>
-            <button>Message</button>
-            <button>Edit</button>
-        </div>
+     
+            {/* <button>Save for preview</button>
+            <button>Message</button> */}
+            <button>
+              <CiEdit />
+              Edit Profile
+            </button>
       </div>
       <div className="profileBody">
         <SocialMediaMetrics/>

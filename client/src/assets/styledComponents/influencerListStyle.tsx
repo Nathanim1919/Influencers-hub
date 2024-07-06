@@ -51,29 +51,55 @@ export const InfluencerListContainer = styled.div`
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      height: 340px;
+      animation: animate 0.5s ease-in-out;
+      background-color: #fff;
+
       .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #fff;
+        background:linear-gradient(to right, #ff3b3b, #fa23ec);
         padding: 1rem;
         p {
           font-size: 14px;
-          color: #333;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          gap: 0.2rem;
+
+          svg {
+            font-size: 1.2rem;
+          }
+
         }
 
         p:nth-child(2) {
           background-color: #eee;
+          color: #333;
           padding: 0.3rem 0.5rem;
           border-radius: 20px;
           font-size: 0.7rem;
         }
+      }
+
+      @keyframes animate {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
       }
       .body {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         align-items: center;
+        
 
         .image {
           width: 100px;
@@ -92,6 +118,15 @@ export const InfluencerListContainer = styled.div`
           display: flex;
           align-items: center;
           flex-direction: column;
+
+          .instagramUsername{
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding-bottom:1rem ;
+            font-size: 14px;
+            color: #666262;
+          }
           h1 {
             font-size: 15px;
             font-weight: 600;
@@ -116,7 +151,9 @@ export const InfluencerListContainer = styled.div`
           background-color: #fff;
           margin-top: 1rem;
           width: 100%;
+          border-top: 1px solid #eee;
           padding: 0.5rem 0;
+          /* background: linear-gradient(to right, #3bb4ff, #78ccfa); */
           button {
             padding: 6px 10px;
             border: none;

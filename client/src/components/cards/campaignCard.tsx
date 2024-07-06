@@ -26,7 +26,6 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
   setSavedCampaigns,
   setapplyToCampaign,
 }) => {
-
   const [loading, setLoading] = React.useState(false);
 
   const saveCampaign = async (campaign: Campaign, campaignId: string) => {
@@ -48,25 +47,29 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
     );
   };
 
-
   return (
     <CampaignCardContainer>
       <div className="campaignInfo">
         <div className="campaignImage">
           <img src={CampaignImage} alt="campaign" />
         </div>
-        <div className="info">
+      </div>
+      <div className="Brandinfo">
+        <div className="brandLogo">
+          <img src="" alt="" />
+        </div>
+        <div>
           <h3 className="brand">{campaign.brandId.brandName}</h3>
           <div className="date">
             <p>{/* {campaign.timeline?.endDate} */}</p>
           </div>
           <p className="budget">
-            <strong>Budget:</strong> ${campaign.budget}
+            ${campaign.budget}<span>{campaign.status}</span>
           </p>
         </div>
       </div>
       <div className="diescription">
-        <h3 className="text-lg font-bold">{campaign.title}</h3>
+        <h3 className="text-lg font-bold">{(campaign.title)?.slice(0, 30)}..</h3>
         <p className="description">{campaign.description}</p>
       </div>
       <div className="btns">

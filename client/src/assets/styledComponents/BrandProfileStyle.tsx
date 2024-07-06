@@ -156,15 +156,22 @@ export const BrandProfileContainer = styled.div`
         gap: 2rem;
         .campaign {
           display: grid;
-          grid-template-columns: 0.5fr 0.5fr;
-          gap: 2rem;
+          grid-template-columns: 1fr;
           border: 1px solid #eee;
-          padding: 0.5rem;
-          border-radius: 15px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+          animation: anmateWhenCreate 0.5s ease-in-out;
+
+          @keyframes anmateWhenCreate {
+            from {
+              transform: scale(0.8);
+            }
+            to {
+              transform: scale(1);
+            }
+          }
           
           h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
           }
           p {
@@ -174,8 +181,9 @@ export const BrandProfileContainer = styled.div`
           .campaignImage {
             width: 100%;
             height: 100%;
-            border-radius: 1rem;
+            /* border-radius: 1rem; */
             overflow: hidden;
+            max-height: 150px;
             img {
               width: 100%;
               height: 100%;
@@ -187,6 +195,7 @@ export const BrandProfileContainer = styled.div`
             flex-direction: column;
             background-color: #f9f9f9;
             width: 100%;
+            padding: 1rem;
             h3 {
               font-weight: bold;
             }
@@ -198,21 +207,38 @@ export const BrandProfileContainer = styled.div`
 
           .bootmLinks{
            width: 100%;
-          button{
-            border: none;
-            background-color: #e27070;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            font-weight: 500;
-            color: #fff;
+           display: flex;
+           justify-content: space-around;
+           padding: 1rem;
+        
+
+           button{
+            width: 100%;
             display: flex;
+            gap: .5rem;
             align-items: center;
-            gap: .4rem;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            justify-content: center;
+           }
+
+           button:nth-child(1){
+            color: blue;
+
             &:hover {
-              background-color: #e6abab;
+              background-color: #eee;
+              
             }
+           }
+
+           button:nth-child(2){
+            color: red;
+
+            &:hover {
+              background-color: #eee;
+              
+            }
+           }
           
           }
         }

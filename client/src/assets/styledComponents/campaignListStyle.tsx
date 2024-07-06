@@ -1,24 +1,25 @@
 import styled from "styled-components";
 
-export const CampaignListContainer = styled.div`
+
+interface CampaignContainerStyle  {
+  isSidebar: boolean;
+}
+
+export const CampaignListContainer = styled.div<CampaignContainerStyle>`
   display: grid;
-  grid-template-columns: 1fr .3fr;
-  /* padding: 2rem; */
+  grid-template-columns: ${({ isSidebar }) => isSidebar ? "1fr .3fr" : "1fr"};
   overflow: hidden;
-  /* gap: 1rem; */
   height: 100vh;
 
   .lists {
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
-    /* padding: 1rem; */
     padding-bottom: 3rem;
 
     .header {
       display: flex;
       flex-direction: column;
-      /* background-color: #fff; */
       padding: 1rem;
       border-bottom: 1px solid #ddd;
       box-shadow:0 5px 23px rgba(0,0,0,.1);
@@ -44,7 +45,8 @@ export const CampaignListContainer = styled.div`
       gap: 1rem;
       overflow-y: auto;
       height: 90vh;
-      padding:2rem 1rem;
+      padding:1rem;
+      padding-bottom: 3rem;
     }
   }
 `;

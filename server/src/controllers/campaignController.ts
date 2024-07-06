@@ -7,6 +7,7 @@ import ApiResponse from "../utils/apiResponse";
 export const createCampaign = async (req: Request, res: Response) => {
     try {
       // Check if req.user exists and has _id
+      console.log(req.user);
       if (!req.user || !req.user._id) {
         return res.status(400).send("User information is missing.");
       }

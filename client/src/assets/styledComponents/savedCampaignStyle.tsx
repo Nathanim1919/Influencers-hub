@@ -32,6 +32,25 @@ export const SavedCampaignContainer = styled.div`
         }
       }
 
+      .selector{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-size: 0.8rem;
+        color: #6b6b6b;
+        position: relative;
+        background-color: #eee;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+
+
+        
+        &:hover {
+          color: #000;
+        }
+      }
+
       .options {
         display: flex;
         position: absolute;
@@ -69,6 +88,22 @@ export const SavedCampaignContainer = styled.div`
     height: 90vh;
     overflow-y: auto;
     padding: 2rem 1rem;
+
+    .empty{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      color: #6b6b6b;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+
+
+      svg{
+        font-size: 3rem;
+      }
+    }
 
     .campaign {
       display: flex;

@@ -21,6 +21,13 @@ export const SocialMediaMetricsContainer = styled.div`
             display: flex;
             align-items: center;
             padding: .4rem 2rem;
+
+            input {
+                padding: .4rem;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin: 0 1rem;
+            }
         
         div:nth-child(1){
             display: flex;

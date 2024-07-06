@@ -4,8 +4,6 @@ export const CampaignCardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 1rem;
-  border-radius: 1rem;
   box-shadow: 0 6px 17px rgba(0, 0, 0, 0.07);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -13,16 +11,15 @@ export const CampaignCardContainer = styled.div`
   margin-bottom: 1rem;
   margin: 0 auto;
 
-  &:hover {
-    box-shadow: 0 6px 17px rgba(0, 0, 0, 0.2);
-  }
-
   .campaignImage {
     width: 100%;
     height: 100%;
-    border-radius: 1rem;
     overflow: hidden;
+    height: 200px;
+
+    
     img {
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.7);
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -31,12 +28,59 @@ export const CampaignCardContainer = styled.div`
 
   .campaignInfo {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
-    gap: 2rem;
+    gap: 1rem;
+    
 
     h1 {
       font-size: 1.2rem;
       font-weight: bold;
+    }
+  }
+
+  .Brandinfo{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+
+    .brandLogo{
+      width: 40px;
+      height: 40px;
+      background-color: #ddd;
+      border-radius: 50%;
+
+    }
+
+    .budget{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+
+      span{
+        background-color: #eee;
+        color: #333;
+        padding: 0.3rem 1rem;
+        font-size: 0.8rem;
+        border-radius: 0.5rem;
+      }
+    }
+  }
+
+  .diescription{
+      padding:0 1rem;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    p {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #6b6b6b;
     }
   }
 
@@ -51,7 +95,8 @@ export const CampaignCardContainer = styled.div`
     flex-direction: column;
     background-color: #f9f9f9;
     width: 100%;
-
+    
+    
     h3 {
       font-weight: bold;
     }
@@ -68,6 +113,7 @@ export const CampaignCardContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 1rem;
     button {
       border: none;
       border-radius: 0.5rem;

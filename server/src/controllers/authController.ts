@@ -131,6 +131,8 @@ export const login = asyncHandler(
         secure: process.env.NODE_ENV === "production",
       });
 
+   
+
       // save to redis
       await redisClient.setEx(`refreshToken_${user._id}`, 806000, refreshToken);
 

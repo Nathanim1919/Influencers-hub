@@ -74,7 +74,7 @@ const CampaignList: React.FC = () => {
   }, []);
 
   return (
-    <CampaignListContainer>
+    <CampaignListContainer isSidebar={savedCampaigns?.length > 0 || appliedCampaigns?.length > 0}>
       {!selectedCampaign && (
         <div className="lists">
           <div className="header">
@@ -109,7 +109,7 @@ const CampaignList: React.FC = () => {
       {applyToCampaign && 
         <Application  setSelectedCampaign={setSelectedCampaign} setAppliedCampaigns={setAppliedCampaigns} campaign={applyToCampaign}  closeModal={() => setapplyToCampaign(null)} /> 
         }
-      <SavedCampaign setAppliedCampaigns={setAppliedCampaigns} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} savedCampaigns={savedCampaigns} appliedCampaigns={appliedCampaigns}/>
+      {(appliedCampaigns?.length > 0 || savedCampaigns?.length > 0) && <SavedCampaign setAppliedCampaigns={setAppliedCampaigns} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} savedCampaigns={savedCampaigns} appliedCampaigns={appliedCampaigns}/>}
     </CampaignListContainer>
   );
 };
