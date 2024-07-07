@@ -1,8 +1,8 @@
 import React from 'react';
-// import youtube from '../../assets/youtube.png';
-// import tiktok from '../../assets/tiktok.png';
-// import instagram from '../../assets/instagram.png';
-// import './topInfluencers.css';
+import youtube from '../../assets/youtube.png';
+import tiktok from '../../assets/tiktok.png';
+import instagram from '../../assets/instagram.png';
+import './topInfluencers.css';
 
 export const TopInfluencers: React.FC = () => {
     return (
