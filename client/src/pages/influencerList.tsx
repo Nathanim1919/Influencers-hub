@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Influencer } from "../interfaces/influencerInterface";
 import brandApi from "../api/brandApi";
 import { requestHandler } from "../utils";
@@ -11,7 +12,7 @@ import AvatorImage from "../assets/heroImages/avator.jpg";
 import { LiaSaveSolid } from "react-icons/lia";
 import { influencerApi } from "../api";
 import { CiLocationOn } from "react-icons/ci";
-
+import { useConversation } from "../contexts/conversationContext";
 
 export const InfluencerList: React.FC = () => {
   const getFromLocalStorage = (key: string) => {
@@ -32,6 +33,8 @@ export const InfluencerList: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [displaySavedInfluencers, setDisplaySavedInfluencers] = useState(false);
   const { filterParam } = useParams();
+  const { setActiveUser } = useConversation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     displaySavedInfluencers
@@ -52,8 +55,8 @@ export const InfluencerList: React.FC = () => {
           ? setSavedInfluencers(data)
           : setInfluencers(data);
         setInfluencers(data);
-        saveToLocalStorage("filteredInfluncers", data);
-        saveToLocalStorage("savedInfluncers", data);
+        // saveToLocalStorage("filteredInfluncers", data);
+        // saveToLocalStorage("savedInfluncers", data);
       },
       alert
     );
@@ -75,6 +78,12 @@ export const InfluencerList: React.FC = () => {
     );
   };
 
+  const startConversation = (influencer: Influencer) => {
+    setActiveUser(influencer);
+    navigate("/influencer/messages");
+    console.log("Starting conversation with: ", influencer);
+  };
+
   return (
     <InfluencerListContainer>
       <div className="topheader">
@@ -90,11 +99,13 @@ export const InfluencerList: React.FC = () => {
         </button>
       </div>
       <div className="influncerLists">
-        
         {influencers?.map((influncer) => (
           <div className="Influncer">
             <div className="header">
-              <p><CiLocationOn/>{influncer.location}</p>
+              <p>
+                <CiLocationOn />
+                {influncer.location}
+              </p>
               <p>23 Years Old</p>
             </div>
             <div className="body">
@@ -121,7 +132,10 @@ export const InfluencerList: React.FC = () => {
                   <FaRegUser />
                   Profile
                 </button>
-                <button className="message">
+                <button
+                  onClick={() => startConversation(influncer)}
+                  className="message"
+                >
                   <LuMessageSquare />
                   Message
                 </button>

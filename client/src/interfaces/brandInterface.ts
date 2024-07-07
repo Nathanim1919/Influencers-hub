@@ -2,7 +2,7 @@ import { Campaign } from "./campaignInterface";
 
 export interface IBrand {
     _id?: string;
-    brandName: string;
+    brandName?: string;
     email: string;
     password: string;
     role?: string;

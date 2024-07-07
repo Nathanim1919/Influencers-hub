@@ -15,6 +15,7 @@ import influencerApi from "./routes/influencerRoutes";
 import dotenv from "dotenv";
 import { dot } from "node:test/reporters";
 import { verifyUser } from "./middlewares/authMiddleware";
+import conversationRoute from "./routes/conversationRoute";
 
 const port = 5000;
 dotenv.config();
@@ -75,6 +76,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/campaigns", campaignRoute);
 app.use("/api/brands", verifyUser, brandRoute);
 app.use("/api/influencer", verifyUser, influencerApi);
+app.use("/api/conversations",verifyUser, conversationRoute);
 
 // Start the server
 app.listen(port, () => {

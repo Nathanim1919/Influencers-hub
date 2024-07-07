@@ -42,10 +42,10 @@ export const CampaignListContainer = styled.div<CampaignContainerStyle>`
     .campaignLists {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
+      gap: 2rem;
       overflow-y: auto;
       height: 90vh;
-      padding:1rem;
+      padding:2rem;
       padding-bottom: 3rem;
     }
   }

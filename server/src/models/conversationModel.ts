@@ -1,35 +1,40 @@
 import { Schema, model } from "mongoose";
 
-const participantSchema = new Schema({
-  participantId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    refPath: 'participants.participantType',
+const participantSchema = new Schema(
+  {
+    participantId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      refPath: "participants.participantType",
+    },
+    participantType: {
+      type: String,
+      required: true,
+      enum: ["Influencer", "Brand"], // Specify the allowed models here
+    },
   },
-  participantType: {
-    type: String,
-    required: true,
-    enum: ['Influencer', 'Brand'], // Specify the allowed models here
-  },
-}, { _id: false });
+  { _id: false }
+);
 
-const messageSchema = new Schema({
-  text: {
-    type: String,
-    required: true,
+const messageSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    sender: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      refPath: "messages.senderType",
+    },
+    isLast: {
+      type: Boolean,
+      default: false,
+    },
+    createdAt: { type: Date, default: Date.now },
   },
-  sender: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    refPath: 'messages.senderType',
-  },
-  senderType: {
-    type: String,
-    required: true,
-    enum: ['Influencer', 'Brand'],
-  },
-  createdAt: { type: Date, default: Date.now },
-}, { _id: false });
+  { _id: false }
+);
 
 const conversationSchema = new Schema({
   participants: [participantSchema],
@@ -38,5 +43,5 @@ const conversationSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-const Conversation = model('Conversation', conversationSchema);
+const Conversation = model("Conversation", conversationSchema);
 export default Conversation;

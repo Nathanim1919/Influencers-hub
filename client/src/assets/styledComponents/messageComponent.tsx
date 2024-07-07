@@ -20,6 +20,7 @@ export const RecentPostsContainer = styled.div`
     overflow-y: auto;
     height: 100vh;
     background-color: #eee;
+    border-right: 1px solid #c0b8b8;
 
     .actives {
       display: grid;
