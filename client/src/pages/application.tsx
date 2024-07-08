@@ -26,7 +26,6 @@ export const Application: React.FC<ApplicationModalProps> = ({
 
   // functions for applying to a campaign
   const applyToCampaign = async (campaign: Campaign, campaignId: string) => {
-    console.log("Attempting to apply to campaign with id:", campaignId);
     await requestHandler(
       async () => influencerApi.applyToCampaign(campaignId, proposal),
       setLoading,

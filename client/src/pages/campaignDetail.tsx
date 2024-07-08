@@ -2,6 +2,11 @@ import React from "react";
 import { CampaignDetailContainer } from "../assets/styledComponents/campaignDetailStyle";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Campaign } from "../interfaces/campaignInterface";
+import { useAuth } from "../contexts/authContext";
+import { PiApplePodcastsLogoDuotone } from "react-icons/pi";
+import { CiEdit } from "react-icons/ci";
+
+
 
 interface CampaignDetailProps {
   setSelectedCampaign?: (campaign: Campaign | null) => void;
@@ -14,8 +19,9 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
   setSelectedCampaign,
   editCampaign,
   campaign,
-  setapplyToCampaign
+  setapplyToCampaign,
 }) => {
+  const { user } = useAuth();
   return (
     <CampaignDetailContainer>
       <div className="header">
@@ -33,6 +39,9 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
         )}
         <h1>{campaign?.title}</h1>
         <p>{campaign?.brandId.brandName}</p>
+        {/* {campaign?.brandId._id === user._id && (
+          <p>Applications: {}</p>
+        )} */}
         {!editCampaign && (
           <span
             onClick={() => {
@@ -70,7 +79,8 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
           </p>
         </div>
         <div className="editCampaign">
-          {editCampaign && <button>Edit Campaign</button>}
+          {editCampaign && <button><CiEdit/></button>}
+          {editCampaign && <button><PiApplePodcastsLogoDuotone/>({campaign?.applications?.length})</button>}
           <p>{campaign?.budget} ETB</p>
         </div>
       </div>

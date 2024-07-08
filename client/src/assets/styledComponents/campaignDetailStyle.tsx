@@ -52,7 +52,7 @@ export const CampaignDetailContainer = styled.div`
         }
        .editCampaign{
         display: flex;
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center;
         gap: 1rem;
         justify-content: center;
@@ -63,8 +63,10 @@ export const CampaignDetailContainer = styled.div`
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            background-color: #e27070;
-            color: white;
+            background-color: #eae3e3;
+            color: #333;
+            display: flex;
+            align-items: center;
         }
         p {
             font-size: 1rem;

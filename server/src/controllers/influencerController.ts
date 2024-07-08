@@ -8,20 +8,12 @@ export const getInfluencers = async (req: Request, res: Response) => {
   try {
     // get Params called filter
     const filter = req.query.filter;
-    if (filter && (filter !== "all")) {
+    if (filter && filter !== "all") {
       const influencers = await Influencer.find({ niches: filter });
-      res.status(200).json(new ApiResponse(
-        200,
-        influencers,
-        "Influencers"
-      ));
+      res.status(200).json(new ApiResponse(200, influencers, "Influencers"));
     } else {
       const influencers = await Influencer.find();
-      res.status(200).json(new ApiResponse(
-        200,
-        influencers,
-        "Influencers"
-      ));
+      res.status(200).json(new ApiResponse(200, influencers, "Influencers"));
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -89,7 +81,6 @@ export const applyToCampaign = async (req: Request, res: Response) => {
       const application = await Application.create({
         influencerId: req.user?._id,
         campaignId: req.body.campaignId,
-        status: "pending",
         Proposal: req.body.proposal,
       });
 

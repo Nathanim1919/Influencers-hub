@@ -30,7 +30,7 @@ const campaignSchema = new mongoose.Schema<ICampaign>({
     engagementRate: { type: Number, required: true },
   },
   hashtags: [{ type: String, required: true }],
-  status: { type: String, required: true, default: "pending"},
+  status: { type: String, required: true, enum: ["open", "closed"], default: "open" },
   applications: [{ type: mongoose.Schema.Types.ObjectId, ref: "Application" }],
   approvedInfluencers: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Influencer" },
