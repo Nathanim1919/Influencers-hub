@@ -9,26 +9,15 @@ import { campaignApi, influencerApi } from "../api";
 import { Application } from "./application";
 
 const CampaignList: React.FC = () => {
-  const saveToLocalStorage = (key: string, data: any) => {
-    localStorage.setItem(key, JSON.stringify(data));
-  };
 
-  const getFromLocalStorage = (key: string) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  };
-
-  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>();
-  const [applyToCampaign, setapplyToCampaign] = useState<Campaign | null>();
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [applyToCampaign, setapplyToCampaign] = useState<Campaign | null>(null);
   const [loading, setLoading] = useState(false);
-  const [allCampaigns, setAllCampaigns] = useState<Campaign[] | null>(
-    getFromLocalStorage("allCampaigns")
+  const [allCampaigns, setAllCampaigns] = useState<Campaign[] | null>(null
   );
-  const [savedCampaigns, setSavedCampaigns] = useState<Campaign[] | null>(
-    getFromLocalStorage("savedCampaigns")
+  const [savedCampaigns, setSavedCampaigns] = useState<Campaign[] | null>(null
   );
-  const [appliedCampaigns, setAppliedCampaigns] = useState<Campaign[] | null>(
-    getFromLocalStorage("appliedCampaigns")
+  const [appliedCampaigns, setAppliedCampaigns] = useState<Campaign[] | null>(null
   );
 
   const getAllCampaigns = async () => {
@@ -37,7 +26,6 @@ const CampaignList: React.FC = () => {
       setLoading,
       (data: Campaign[]) => {
         setAllCampaigns(data);
-        saveToLocalStorage("allCampaigns", data);
       },
       alert
     );
@@ -49,7 +37,6 @@ const CampaignList: React.FC = () => {
       setLoading,
       (data: Campaign[]) => {
         setAppliedCampaigns(data);
-        saveToLocalStorage("appliedCampaigns", data);
       },
       alert
     );
@@ -61,7 +48,6 @@ const CampaignList: React.FC = () => {
       setLoading,
       (data: Campaign[]) => {
         setSavedCampaigns(data);
-        saveToLocalStorage("savedCampaigns", data);
       },
       alert
     );
@@ -74,7 +60,11 @@ const CampaignList: React.FC = () => {
   }, []);
 
   return (
-    <CampaignListContainer isSidebar={savedCampaigns?.length > 0 || appliedCampaigns?.length > 0}>
+    <CampaignListContainer
+      isSidebar={
+        (savedCampaigns?.length ?? 0) > 0 || (appliedCampaigns?.length ?? 0) > 0
+      }
+    >
       {!selectedCampaign && (
         <div className="lists">
           <div className="header">
@@ -106,10 +96,22 @@ const CampaignList: React.FC = () => {
           campaign={selectedCampaign}
         />
       )}
-      {applyToCampaign && 
-        <Application  setSelectedCampaign={setSelectedCampaign} setAppliedCampaigns={setAppliedCampaigns} campaign={applyToCampaign}  closeModal={() => setapplyToCampaign(null)} /> 
-        }
-      {(appliedCampaigns?.length > 0 || savedCampaigns?.length > 0) && <SavedCampaign setAppliedCampaigns={setAppliedCampaigns} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} savedCampaigns={savedCampaigns} appliedCampaigns={appliedCampaigns}/>}
+      {applyToCampaign && (
+        <Application
+          setSelectedCampaign={setSelectedCampaign}
+          setAppliedCampaigns={setAppliedCampaigns}
+          campaign={applyToCampaign}
+          closeModal={() => setapplyToCampaign(null)}
+        />
+      )}
+      {((appliedCampaigns?.length?? 0 > 0) || (savedCampaigns?.length?? 0 > 0)) && (
+        <SavedCampaign
+          selectedCampaign={selectedCampaign}
+          setSelectedCampaign={setSelectedCampaign}
+          savedCampaigns={savedCampaigns}
+          appliedCampaigns={appliedCampaigns}
+        />
+      )}
     </CampaignListContainer>
   );
 };

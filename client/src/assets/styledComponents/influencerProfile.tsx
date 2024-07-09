@@ -18,6 +18,17 @@ export const InfluencerProfileContainer = styled.div`
     position: sticky;
     top: 0;
 
+    .back{
+      position: absolute;
+      left: 20px;
+      cursor: pointer;
+      top: 1rem;
+      font-size: 1.5rem;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 50%;
+    }
+
     .profile{
       display: flex;
       align-items: center;

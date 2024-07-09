@@ -35,6 +35,14 @@ export const InfluencerListContainer = styled.div`
     }
   }
 
+  .influencerProfile{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70%;
+    box-shadow: 0 20px 50px rgba(0,0,0,.2);
+  }
+
   .influncerLists {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

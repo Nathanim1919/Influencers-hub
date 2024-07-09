@@ -89,7 +89,8 @@ export const BrandProfileContainer = styled.div`
     .addressAndContactInfo {
       display: grid;
       grid-template-columns: 1fr;
-      padding: 2rem;
+      padding:0 2rem;
+      gap: 2rem;
       .address {
         h1 {
           font-size: 1.5rem;

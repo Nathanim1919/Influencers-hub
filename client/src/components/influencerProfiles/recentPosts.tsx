@@ -8,16 +8,22 @@ import { LiaCommentsSolid } from "react-icons/lia";
 import { IoShareSocial } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
 import MyImage from "../../assets/influencerProfileImages/a.jpeg"
+import { Influencer } from "../../interfaces/influencerInterface";
+
+interface RecentPostsProps {
+  influencer?: Influencer;
+  isOwner?:boolean
+}
 
 
-export const RecentPosts: React.FC = () => {
+export const RecentPosts: React.FC<RecentPostsProps> = ({influencer, isOwner}) => {
   return (
     <RecentPostsContainer>
         <div className="header">
         <h1>Featured Posts</h1>
-        <div className="editIcon">
+        {(isOwner || !influencer) && <div className="editIcon">
             <CiEdit/>
-        </div>
+        </div>}
         </div>
       <div className="posts">
         <div className="post">

@@ -1,9 +1,9 @@
 import { IApplication } from "../interfaces/IApplication";
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const applicationSchema = new Schema<IApplication>({
-  influencerId: { type: String, required: true },
-  campaignId: { type: String, required: true },
+  influencerId: { type: mongoose.Schema.Types.ObjectId, ref:'Influencer',required: true },
+  campaignId: { type: mongoose.Schema.Types.ObjectId, ref:"Campaign", required: true },
   status: {
     type: String,
     enum: ["pending", "approved", "rejected"],

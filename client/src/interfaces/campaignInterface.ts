@@ -1,3 +1,4 @@
+import { IApplication } from "./applicationInterface";
 import { IBrand } from "./brandInterface";
 
 export interface Campaign {
@@ -27,7 +28,7 @@ export interface Campaign {
   
     hashtags?: string;
     status?: string;
-    applications?: number[];
+    applications?: IApplication[];
     approvedInfluencers?: number[];
     performanceMetrics?: {
       reach: number;

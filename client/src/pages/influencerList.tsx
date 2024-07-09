@@ -13,6 +13,7 @@ import { LiaSaveSolid } from "react-icons/lia";
 import { influencerApi } from "../api";
 import { CiLocationOn } from "react-icons/ci";
 import { useConversation } from "../contexts/conversationContext";
+import { InfluencerProfile } from "./influencerProfile";
 
 export const InfluencerList: React.FC = () => {
   const getFromLocalStorage = (key: string) => {
@@ -24,16 +25,13 @@ export const InfluencerList: React.FC = () => {
     localStorage.setItem(key, JSON.stringify(data));
   };
 
-  const [influencers, setInfluencers] = useState<Influencer[] | null>(
-    getFromLocalStorage("filteredInfluncers")
-  );
-  const [savedInfluencers, setSavedInfluencers] = useState<Influencer[] | null>(
-    getFromLocalStorage("savedInfluncers")
-  );
+  const [influencers, setInfluencers] = useState<Influencer[] | null>(null);
+  const [savedInfluencers, setSavedInfluencers] = useState<Influencer[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [displaySavedInfluencers, setDisplaySavedInfluencers] = useState(false);
   const { filterParam } = useParams();
   const { setActiveUser } = useConversation();
+  const [selectedInfluencer, setSelectedInfluencer] = useState<Influencer | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -119,16 +117,13 @@ export const InfluencerList: React.FC = () => {
                   @NathanimTadele
                 </p>
                 <div className="niches">
-                  {/* {influncer.niches?.map((niche) => (
-                    <p>{niche}</p>
-                  ))} */}
                   <p>Food</p>
                   <p>Travel</p>
                   <p>Technology</p>
                 </div>
               </div>
               <div className="btns">
-                <button className="profile">
+                <button className="profile" onClick={()=>setSelectedInfluencer(influncer)}>
                   <FaRegUser />
                   Profile
                 </button>
@@ -151,6 +146,9 @@ export const InfluencerList: React.FC = () => {
           </div>
         ))}
         {influencers?.length === 0 && <h1>No Influencers Found</h1>}
+      </div>
+      <div className="influencerProfile">
+     {selectedInfluencer && <InfluencerProfile influencer={selectedInfluencer}/>}
       </div>
     </InfluencerListContainer>
   );

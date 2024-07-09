@@ -5,6 +5,7 @@ import { Campaign } from "../interfaces/campaignInterface";
 import { useAuth } from "../contexts/authContext";
 import { PiApplePodcastsLogoDuotone } from "react-icons/pi";
 import { CiEdit } from "react-icons/ci";
+import { ApplicationList } from "../components/layout/applicationLayouts/applicationList";
 
 
 
@@ -22,6 +23,7 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
   setapplyToCampaign,
 }) => {
   const { user } = useAuth();
+  const [openApplicationList, setOpenApplicationList] = React.useState(false);
   return (
     <CampaignDetailContainer>
       <div className="header">
@@ -39,9 +41,6 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
         )}
         <h1>{campaign?.title}</h1>
         <p>{campaign?.brandId.brandName}</p>
-        {/* {campaign?.brandId._id === user._id && (
-          <p>Applications: {}</p>
-        )} */}
         {!editCampaign && (
           <span
             onClick={() => {
@@ -80,7 +79,7 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
         </div>
         <div className="editCampaign">
           {editCampaign && <button><CiEdit/></button>}
-          {editCampaign && <button><PiApplePodcastsLogoDuotone/>({campaign?.applications?.length})</button>}
+          {editCampaign && <button onClick={()=>setOpenApplicationList(true)}><PiApplePodcastsLogoDuotone/>({campaign?.applications?.length})</button>}
           <p>{campaign?.budget} ETB</p>
         </div>
       </div>
@@ -93,6 +92,9 @@ export const CampaignDetail: React.FC<CampaignDetailProps> = ({
         <h2>Objective</h2>
         <p>{campaign?.objectives}</p>
       </div>
+      {openApplicationList && (
+        <ApplicationList openApplicationList={openApplicationList} setOpenApplicationList={setOpenApplicationList} applications={campaign?.applications || []} />
+      )}
     </CampaignDetailContainer>
   );
 };

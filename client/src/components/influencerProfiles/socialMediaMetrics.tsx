@@ -5,7 +5,12 @@ import InstagramImage from "../../assets/heroImages/instagram.png";
 // import youtubeImage from "../../assets/heroImages/youtube.png";
 import { SocialMediaMetricsContainer } from "../../assets/styledComponents/socialMediaMetrics";
 import { useState } from "react";
-export const SocialMediaMetrics: React.FC = () => {
+import { Influencer } from "../../interfaces/influencerInterface";
+interface SocialMediaMetrixsProps {
+  influencer?: Influencer
+  isOwner?:boolean
+}
+export const SocialMediaMetrics: React.FC<SocialMediaMetrixsProps> = ({influencer, isOwner}) => {
   const [editUserName, setEditUsername] = useState(false);  
   return (
     <SocialMediaMetricsContainer>
@@ -23,9 +28,9 @@ export const SocialMediaMetrics: React.FC = () => {
               <input type="text" placeholder="Enter new username" />
             ) : null
           }
-          <div className="edit">
+        {(isOwner || !influencer)&&  <div className="edit">
             <button onClick={()=>setEditUsername(!editUserName)}>{editUserName?"Save":"Edit"}</button>
-          </div>
+          </div>}
         </div>
         <div className="statics">
           <div className="follower">

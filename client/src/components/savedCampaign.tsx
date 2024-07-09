@@ -3,7 +3,6 @@ import MyImage from "../assets/influencerProfileImages/a.jpeg";
 import { SavedCampaignContainer } from "../assets/styledComponents/savedCampaignStyle";
 import { GrFormNextLink } from "react-icons/gr";
 import { Campaign } from "../interfaces/campaignInterface";
-import { CiBoxList } from "react-icons/ci";
 import { IoSaveOutline } from "react-icons/io5";
 import { BsSendCheck } from "react-icons/bs";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -15,6 +14,7 @@ interface SavedCampaignProps {
   appliedCampaigns: Campaign[] | null;
   setSelectedCampaign?: (campaign: Campaign) => void;
   selectedCampaign: Campaign | null;
+  
 }
 export const SavedCampaign: React.FC<SavedCampaignProps> = ({
   savedCampaigns,
