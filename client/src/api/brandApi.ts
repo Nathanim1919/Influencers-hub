@@ -20,5 +20,5 @@ const getSavedInfluencers = async () => {
 export default {
   editBrand,
   saveInfluencer,
-  getSavedInfluencers
+  getSavedInfluencers,
 };

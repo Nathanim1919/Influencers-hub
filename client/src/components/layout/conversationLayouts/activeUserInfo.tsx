@@ -2,15 +2,17 @@ import ProfileImage from "../../../assets/influencerProfileImages/a.jpeg";
 import InstagramImage from "../../../assets/influencerProfileImages/a.jpeg";
 import XImage from "../../../assets/heroImages/x.png";
 import LinkedinImage from "../../../assets/heroImages/linkedin.png";
-import { conversation } from "../../../interfaces/conversationInterface";
+import { IConversation } from "../../../interfaces/conversationInterface";
+import { useAuth } from "../../../contexts/authContext";
 
 interface ActiveUserInfoProps {
-  activeConversation: conversation | null;
+  activeConversation: IConversation | null;
 }
 export const ActiveUserInfo: React.FC<ActiveUserInfoProps> = ({
   activeConversation,
 }) => {
   // filter FullName, BrandName, ProfileImage, Logo based on activeUser.role
+  const {user} = useAuth();
   return (
     <div className="activeBuddyInfo">
       <div className="buddy">
@@ -23,8 +25,13 @@ export const ActiveUserInfo: React.FC<ActiveUserInfoProps> = ({
           </div>
           <div className="buddyInfo">
             <h2>
-              {" "}
-              {activeConversation?.participants?.[0]?.fullName || "Unknown"}
+            {activeConversation?.participants?.find(
+                  (p) => p.participantId._id !== user?._id
+                )?.participantId.fullName ||
+                  activeConversation?.participants?.find(
+                    (p) => p.participantId._id !== user?._id
+                  )?.participantId.brandName ||
+                  "Unknown"}
             </h2>
             <p>online</p>
           </div>

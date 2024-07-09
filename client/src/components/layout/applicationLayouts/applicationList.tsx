@@ -1,7 +1,7 @@
 import React from "react";
 import { IApplication } from "../../../interfaces/applicationInterface";
 import { ApplicationListContainer } from "../../../assets/styledComponents/applicationListStyle";
-import { LuShrink } from "react-icons/lu";
+import { IoMdClose } from "react-icons/io";
 import { ApplicationDetail } from "./applicationDetail";
 import { InfluencerProfile } from "../../../pages/influencerProfile";
 import { Influencer } from "../../../interfaces/influencerInterface";
@@ -16,36 +16,51 @@ export const ApplicationList: React.FC<ApplicationProsp> = ({
   openApplicationList,
   applications,
 }) => {
-  console.log(applications);
   const [openApplicationDetail, setOpenApplicationDetail] =
     React.useState(false);
   const [selectedApplication, setSelectedApplication] =
     React.useState<IApplication | null>(null);
-  // const [viewInfluencerProfile, setViewInfluencerProfile] = React.useState(false);
-  const [selectedInfluencer, setSelectedInfluencer] = React.useState<Influencer | null>(null);
+  const [selectedInfluencer, setSelectedInfluencer] =
+    React.useState<Influencer | null>(null);
   return (
     <ApplicationListContainer openApplicationList={openApplicationList}>
       {selectedApplication && !selectedInfluencer && (
         <ApplicationDetail
-        setSelectedInfluencer={setSelectedInfluencer}
+          setSelectedInfluencer={setSelectedInfluencer}
           application={selectedApplication}
           openApplicationDetail={openApplicationDetail}
           setOpenApplicationDetail={setOpenApplicationDetail}
         />
       )}
-      {selectedInfluencer &&  <div className="influencerProfile">
-        <InfluencerProfile influencer={selectedInfluencer} setInfluencer={setSelectedInfluencer}/>
-      </div>
-      }
+      {selectedInfluencer && (
+        <div className="influencerProfile">
+          <InfluencerProfile
+            influencer={selectedInfluencer}
+            setInfluencer={setSelectedInfluencer}
+          />
+        </div>
+      )}
       <div className="">
         <div className="ApplicationListheader">
           <h1>Applications</h1>
-          <LuShrink onClick={() => setOpenApplicationList(false)} />
+          <div className="close" style={{
+            width: "30px",
+            height: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "50%",
+            cursor: "pointer",
+            boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+          }}>
+            <IoMdClose onClick={() => setOpenApplicationList(false)} />
+          </div>
         </div>
         <div className="applicationList">
           {applications.map((application) => (
             <div
-              className="applicationCard"
+              className={application.status === 'approved'?"approvedApplications":"applicationCard"}
               onClick={() => setSelectedApplication(application)}
             >
               <div className="applicationInfo">
@@ -70,7 +85,6 @@ export const ApplicationList: React.FC<ApplicationProsp> = ({
           )}
         </div>
       </div>
-     
     </ApplicationListContainer>
   );
 };

@@ -7,7 +7,7 @@ const createCampaign = async (campaign: Partial<Campaign>) => {
 };
 
 const editCampaign = async (campaign: Partial<Campaign>) => {
-    return await apiClient.put(`/campaigns/${campaign.id}`, campaign);
+    return await apiClient.put(`/campaigns/${campaign._id}`, campaign);
 };
 
 const deleteCampaign = async (id: number) => {
@@ -26,13 +26,10 @@ const getApplications = async (id: number) => {
     return await apiClient.get(`/campaigns/${id}/applications`);
 };
 
-const approveInfluencer = async (campaignId: number, influencerId: number) => {
-    return await apiClient.put(`/campaigns/${campaignId}/applications/${influencerId}`);
+const approveInfluencer = async (campaignId: string, influencerId: string) => {
+    return await apiClient.post(`/campaigns/${campaignId}/applications/${influencerId}/accept`);
 };
 
-const rejectInfluencer = async (campaignId: number, influencerId: number) => {
-    return await apiClient.delete(`/campaigns/${campaignId}/applications/${influencerId}`);
-};
 
 const getPerformanceMetrics = async (id: number) => {
     return await apiClient.get(`/campaigns/${id}/performance-metrics`);

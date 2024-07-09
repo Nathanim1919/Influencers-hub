@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import Campaign from "../models/campaignModel";
-import { ObjectId } from "mongoose";
+import { ObjectId, Types } from "mongoose";
 import ApiResponse from "../utils/apiResponse";
+import Application from "../models/applicationModel";
 
 export const createCampaign = async (req: Request, res: Response) => {
   try {
@@ -37,7 +38,9 @@ export const createCampaign = async (req: Request, res: Response) => {
 
 export const getAllCampaigns = async (req: Request, res: Response) => {
   try {
-    const campaigns = await Campaign.find().populate("brandId").populate("applications");
+    const campaigns = await Campaign.find()
+      .populate("brandId")
+      .populate("applications");
     console.log(campaigns);
 
     res
@@ -110,6 +113,51 @@ export const deleteCampaign = async (req: Request, res: Response) => {
       res
         .status(200)
         .json(new ApiResponse(200, null, "Campaign Deleted SuccessFully"));
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).send(error.message);
+    } else {
+      res.status(500).send("An Unknown Error Occured");
+    }
+  }
+};
+
+export const approveInfluencer = async (req: Request, res: Response) => {
+  // Inside approveInfluencer controller
+  try {
+    const campaign = await Campaign.findById(new Types.ObjectId(req.params.campaignId));
+   
+    if (!campaign) {
+      res.status(404).send("Campaign not found");
+    } else {
+      const updatedCampaign = await Campaign.findByIdAndUpdate(
+        req.params.campaignId,
+        {
+          $push: { approvedInfluencers: new Types.ObjectId(req.params.influencerId) },
+        },
+        { new: true }
+      );
+
+      // change the status of the application to approved
+      const application = await Application.findOneAndUpdate({
+        influencerId: req.params.influencerId,
+        campaignId: req.params.campaignId,
+      }, {
+        status: "approved"
+      })
+
+      console.log(application);
+
+      res
+        .status(200)
+        .json(
+          new ApiResponse(
+            200,
+            application,
+            "Influencer Approved SuccessFully"
+          )
+        );
     }
   } catch (error) {
     if (error instanceof Error) {

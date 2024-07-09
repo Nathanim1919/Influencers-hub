@@ -1,12 +1,13 @@
 import ProfileImage from "../../../assets/influencerProfileImages/a.jpeg";
-import { conversation } from "../../../interfaces/conversationInterface";
+import { useAuth } from "../../../contexts/authContext";
+import { IConversation } from "../../../interfaces/conversationInterface";
 
 interface ActiveConversationProps {
-  activeConversation: conversation | null;
+  activeConversation: IConversation | null;
   setActiveConversation: React.Dispatch<
-    React.SetStateAction<conversation | null>
+    React.SetStateAction<IConversation | null>
   >;
-  conversations: conversation[];
+  conversations: IConversation[];
 }
 
 export const ActiveConversation: React.FC<ActiveConversationProps> = ({
@@ -14,6 +15,8 @@ export const ActiveConversation: React.FC<ActiveConversationProps> = ({
   setActiveConversation,
   conversations,
 }) => {
+  const { user } = useAuth();
+  console.log("Active conversation: ", activeConversation);
   return (
     <div className="activeConversations">
       <h1>Active conversations</h1>
@@ -28,7 +31,15 @@ export const ActiveConversation: React.FC<ActiveConversationProps> = ({
             </div>
             <div className="info">
               {/* Example approach, adjust based on actual data structure */}
-              <h2>{conversation.participants?.[0]?.fullName || conversation.participants?.[0]?.brandName || "Unknown"}</h2>
+              <h2>
+                {conversation.participants?.find(
+                  (p) => p.participantId._id !== user?._id
+                )?.participantId.fullName ||
+                  conversation.participants?.find(
+                    (p) => p.participantId._id !== user?._id
+                  )?.participantId.brandName ||
+                  "Unknown"}
+              </h2>
               <p>
                 {conversation.messages.find((m) => m.isLast)?.text ||
                   "No messages"}

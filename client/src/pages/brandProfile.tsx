@@ -9,6 +9,8 @@ import { campaignApi } from "../api";
 import { Campaign } from "../interfaces/campaignInterface";
 import { TbListDetails } from "react-icons/tb";
 import { CampaignDetail } from "./campaignDetail";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+
 
 export const BrandProfile: React.FC = () => {
   const [opencreateForm, setOpencreateForm] = useState(false);
@@ -80,10 +82,10 @@ export const BrandProfile: React.FC = () => {
             <p>Phone: 123456789</p>
           </div>
           <div className="socialMediaLinks">
-            <h1>Social Media Links</h1>
-            <p>Facebook: example</p>
-            <p>Twitter: example</p>
-            <p>Instagram: example</p>
+              <FaFacebook />
+              <FaInstagram />
+              <FaLinkedin />
+              <FaTwitter />
           </div>
         </div>
       </div>

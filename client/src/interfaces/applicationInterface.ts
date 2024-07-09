@@ -1,7 +1,10 @@
+import { Campaign } from "./campaignInterface";
+import { Influencer } from "./influencerInterface";
+
 export interface IApplication {
     _id: string;
-    influencerId: string;
-    campaignId: string;
+    influencerId: Influencer;
+    campaignId: Campaign;
     status: string;
     Proposal: string;
     portfolio: string[];

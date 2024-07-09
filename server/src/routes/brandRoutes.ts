@@ -10,6 +10,4 @@ router.post('/saveInfluencer', saveInfluencer);
 router.get('/savedInfluencers', getSavedInfluencers);
 
 
-
-
 export default router;

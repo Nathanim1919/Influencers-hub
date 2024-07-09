@@ -101,6 +101,22 @@ export const BrandProfileContainer = styled.div`
           color: #6b6b6b;
         }
       }
+      .socialMediaLinks{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        svg{
+          font-size: 2rem;
+          color: #6b6b6b;
+          cursor: pointer;
+          transition: all .2s ease-in-out;
+          &:hover{
+            color: #e27070;
+          }
+        
+        }
+      }
       .contactInfo {
         h1 {
           font-size: 1.5rem;

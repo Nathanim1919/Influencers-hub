@@ -3,6 +3,7 @@
 import { Request, Response } from "express";
 import Conversation from "../models/conversationModel";
 import ApiResponse from "../utils/apiResponse";
+import { Types } from "mongoose";
 
 // Get all conversations
 export const getAllConversations = async (
@@ -39,11 +40,57 @@ export const getAllConversations = async (
 
 // Create a new conversation
 export const createConversation = async (req: Request, res: Response) => {
-  const newConversation = new Conversation({
-    participants: req.body.participants,
-  });
+  console.log("Request body: ", req.body);
+  const firstParticpantId = req.body.participantId;
+  const secondParticipantId = req.user?._id;
+  const firstParticipantRole = req.body.participantRole;
+  const secondParticipantRole = req.user?.role;
+  const userId = req.user?._id;
 
   try {
+    // Check if a conversation with these participants already exists
+    const existingConversation = await Conversation.findOne({
+      participants: {
+        $all: [
+          {
+            participantId: new Types.ObjectId(firstParticpantId),
+            participantType: firstParticipantRole,
+          },
+          {
+            participantId: new Types.ObjectId(secondParticipantId),
+            participantType: secondParticipantRole,
+          },
+        ],
+      },
+    });
+
+    if (existingConversation) {
+      // Return the existing conversation if found
+      return res
+        .status(200)
+        .json(
+          new ApiResponse(
+            200,
+            existingConversation,
+            "Existing conversation returned"
+          )
+        );
+    }
+
+    // If no existing conversation, create a new one
+    const newConversation = new Conversation({
+      participants: [
+        {
+          participantId: firstParticpantId,
+          participantType: firstParticipantRole,
+        },
+        {
+          participantId: secondParticipantId,
+          participantType: secondParticipantRole,
+        },
+      ],
+      messages: [],
+    });
     const savedConversation = await newConversation.save();
     res
       .status(201)
@@ -93,35 +140,45 @@ export const getConversationById = async (req: Request, res: Response) => {
 
 // send a message
 export const sendMessage = async (req: Request, res: Response) => {
-    try {
-      const conversation = await Conversation.findById(req.body.conversationId);
-      if (!conversation) {
-        res.status(404).json({ error: "Conversation not found" });
-        return;
-      }
-  
-      // If there are any messages, set the last message's isLast to false
-      if (conversation.messages.length > 0) {
-        conversation.messages[conversation.messages.length - 1].isLast = false;
-      }
-  
-      // Prepare the new message with isLast set to true
-      const newMessage = { ...req.body, isLast: true };
-  
-      // Add the new message to the conversation
-      conversation.messages.push(newMessage);
-  
-      // Save the updated conversation
-      const savedConversation = await conversation.save();
-      res.status(201).json(new ApiResponse(201, savedConversation, "Message sent successfully"));
-    } catch (error) {
-      if (error instanceof Error) {
-        res.status(500).json({ error: error.message });
-      } else {
-        res.status(500).json({ error: "An error occurred while sending message" });
-      }
+  try {
+    const conversation = await Conversation.findById(req.body.conversationId);
+    if (!conversation) {
+      res.status(404).json({ error: "Conversation not found" });
+      return;
     }
-  };
+
+    // If there are any messages, set the last message's isLast to false
+    if (conversation.messages.length > 0) {
+      conversation.messages[conversation.messages.length - 1].isLast = false;
+    }
+
+    // Prepare the new message with isLast set to true
+    const newMessage = {
+      sender: req.user?._id,
+      text: req.body.message,
+      isLast: true,
+    };
+
+    // Add the new message to the conversation
+    conversation.messages.push(newMessage);
+
+    // Save the updated conversation
+    const savedConversation = await conversation.save();
+    res
+      .status(201)
+      .json(
+        new ApiResponse(201, savedConversation, "Message sent successfully")
+      );
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+    } else {
+      res
+        .status(500)
+        .json({ error: "An error occurred while sending message" });
+    }
+  }
+};
 
 // Get all messages in a conversation
 export const getMessages = async (req: Request, res: Response) => {

@@ -29,7 +29,7 @@ export interface Campaign {
     hashtags?: string;
     status?: string;
     applications?: IApplication[];
-    approvedInfluencers?: number[];
+    approvedInfluencers?: string[];
     performanceMetrics?: {
       reach: number;
       engagement: number;

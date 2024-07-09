@@ -11,6 +11,7 @@ export const verifyUser = async (
   res: Response,
   next: NextFunction
 ) => {
+  // Inside approveInfluencer controller
   const accessToken = req.cookies.accessToken;
   const refreshToken = req.cookies.refreshToken;
 

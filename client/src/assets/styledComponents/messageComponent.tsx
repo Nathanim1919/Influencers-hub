@@ -178,10 +178,17 @@ export const RecentPostsContainer = styled.div`
                 align-items: center;
                 gap: 1rem;
 
-                img{
-                    width: 100px;
-                    align-self: start;
+                .image{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100px;
+                        align-self: start;
+                    }
                 }
+
 
                 .msgContent{
                     padding: .8rem 1rem;

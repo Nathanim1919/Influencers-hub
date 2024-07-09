@@ -8,6 +8,8 @@ import { Influencer } from "../interfaces/influencerInterface";
 import { useAuth } from "../contexts/authContext";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useConversation } from "../contexts/conversationContext";
+
 
 
 interface InfluencerProfileProps {
@@ -20,12 +22,14 @@ export const InfluencerProfile: React.FC<InfluencerProfileProps> = ({
   setInfluencer
 }) => {
   const { user } = useAuth();
+  const {setActiveConversation} = useConversation();
   const isOwner = user?._id === influencer?._id;
+
 
   return (
     <InfluencerProfileContainer>
       <div className="profileHeader">
-        {!isOwner && <div className="back" onClick={()=>setInfluencer(null)}>
+        {!isOwner && <div className="back" onClick={()=>setInfluencer?.(null)}>
           <IoMdArrowRoundBack />
         </div>}
         <div className="profile">

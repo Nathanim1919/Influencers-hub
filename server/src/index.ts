@@ -47,7 +47,7 @@ io.use((socket, next) => {
   }
 });
 */
-app.set("io", io);
+// app.set("io", io);
 
 // Middleware
 app.use(bodyParser.json());
@@ -76,7 +76,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/campaigns", campaignRoute);
 app.use("/api/brands", verifyUser, brandRoute);
 app.use("/api/influencer", verifyUser, influencerApi);
-app.use("/api/conversations",verifyUser, conversationRoute);
+app.use("/api/conversation",verifyUser, conversationRoute);
 
 // Start the server
 app.listen(port, () => {
