@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const SocialMediaMetricsContainer = styled.div`
-    display: grid;
-    grid-template-columns:1fr;
-    padding-top: 1rem;
+    /* display: grid; */
+    /* grid-template-columns:1fr; */
+    /* padding-top: 1rem; */
     width: 100%;
     margin: 0 auto;
     background-color: #ffffff;
     overflow: hidden;
     overflow-y: auto;
-    height: 75vh;
-    gap: 1rem;
+    /* height: 75vh; */
+    /* gap: 1rem; */
     
     .instagram, .linkedIn{
         display: grid;

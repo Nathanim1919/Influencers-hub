@@ -7,10 +7,12 @@ import { requestHandler } from "../utils";
 import { conversationApi } from "../api";
 import { useEffect, useState } from "react";
 
+
 export const Message: React.FC = () => {
   const { activeConversation, setActiveConversation } = useConversation();
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
+  
 
   // fetch conversation
   const fetchConversation = async () => {
@@ -18,12 +20,14 @@ export const Message: React.FC = () => {
       async () => await conversationApi.getConversations(),
       () => {},
       (data) => {
-        setConversations(data);
+        setConversations(data );
         console.log("Conversations: ", data);
       },
       alert
     );
   };
+
+  
 
   useEffect(() => {
     fetchConversation();
@@ -36,8 +40,8 @@ export const Message: React.FC = () => {
         conversations={conversations}
         setActiveConversation={setActiveConversation}
       />
-      <ChatBoard activeConversation={activeConversation} />
-      <ActiveUserInfo activeConversation={activeConversation} />
+      <ChatBoard setActiveConversation={setActiveConversation} activeConversation={activeConversation} />
+      {activeConversation && <ActiveUserInfo activeConversation={activeConversation} />}
     </RecentPostsContainer>
   );
 };

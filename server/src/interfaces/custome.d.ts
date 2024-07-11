@@ -2,6 +2,7 @@
 import { Application } from "express";
 import { ObjectId } from "mongoose";
 import { UserRole } from "../utils/userRoles";
+import { Server } from "socket.io";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -10,6 +11,7 @@ declare module "express-serve-static-core" {
       role: UserRole;
       // Add other properties of the user object as needed
     };
+    io:Server;
     app: Application;
   }
 }

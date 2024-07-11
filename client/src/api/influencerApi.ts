@@ -28,6 +28,7 @@ const getAppliedCampaigns = async () => {
   return apiClient.get("/influencer/appliedcampaigns");
 };
 
+
 export {
   getInfluencer,
   getInfluencers,

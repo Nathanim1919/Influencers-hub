@@ -6,9 +6,8 @@ import { SponsoredPosts } from "../components/influencerProfiles/sponsoredPosts"
 import { CiEdit } from "react-icons/ci";
 import { Influencer } from "../interfaces/influencerInterface";
 import { useAuth } from "../contexts/authContext";
-import { useState } from "react";
+import { InfluencerTestimonials } from "../components/specific/influencerTetimonials";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useConversation } from "../contexts/conversationContext";
 
 
 
@@ -22,7 +21,6 @@ export const InfluencerProfile: React.FC<InfluencerProfileProps> = ({
   setInfluencer
 }) => {
   const { user } = useAuth();
-  const {setActiveConversation} = useConversation();
   const isOwner = user?._id === influencer?._id;
 
 
@@ -37,7 +35,7 @@ export const InfluencerProfile: React.FC<InfluencerProfileProps> = ({
             <img src={MyImage} alt="profile" />
           </div>
           <div className="userinfo">
-            <h1>{influencer?.fullName}</h1>
+            <h1>{influencer?.fullName || user?.fullName}</h1>
             <p>Software Engineer, Personal Account, 23 Years Old</p>
             <div className="niches">
               <span>Technology</span>
@@ -52,7 +50,7 @@ export const InfluencerProfile: React.FC<InfluencerProfileProps> = ({
             Edit Profile
           </button>
         )}
-        {(!isOwner || influencer) && (
+        {(!isOwner && influencer) && (
           <button style={{
             padding: "10px 20px",
             borderRadius: "5px",
@@ -73,8 +71,9 @@ export const InfluencerProfile: React.FC<InfluencerProfileProps> = ({
       <div className="profileBody">
         <SocialMediaMetrics isOwner={isOwner} influencer={influencer} />
         <div className="more-info">
-          <RecentPosts isOwner={isOwner} influencer={influencer} />
-          <SponsoredPosts isOwner={isOwner} influencer={influencer} />
+        <InfluencerTestimonials/>
+          {/* <RecentPosts isOwner={isOwner} influencer={influencer} /> */}
+          {/* <SponsoredPosts isOwner={isOwner} influencer={influencer} /> */}
         </div>
       </div>
     </InfluencerProfileContainer>

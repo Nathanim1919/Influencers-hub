@@ -21,8 +21,8 @@ export const ApplicationAccepted: React.FC<ApplicationAcceptedProps> = ({
 //   const [conversations, setConversations] = useState([]);
   const {setActiveConversation } = useConversation();
 
-  // fetch conversation
-  const fetchConversation = async () => {
+  // create  conversation
+  const createConversation = async () => {
     if (!influencer) {
       console.error("Influencer is undefined.", influencer);
       return; // Exit the function or handle the error appropriately
@@ -41,17 +41,9 @@ export const ApplicationAccepted: React.FC<ApplicationAcceptedProps> = ({
 
   // Function to handle messaging action
   const onMessage = async() => {
-    // Your logic here
-    await fetchConversation();
-    //     navigate("messages");
-    // });
+    await createConversation();
   };
 
-  // Function to handle go back action
-  //   const onGoBack = () => {
-  //     // Your logic here
-  //     navigate("/influencer");
-  //   };
   return (
     <ModalContainer>
       <div className="modal-content">

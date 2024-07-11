@@ -161,9 +161,10 @@ export const sendMessage = async (req: Request, res: Response) => {
 
     // Add the new message to the conversation
     conversation.messages.push(newMessage);
-
+    
     // Save the updated conversation
     const savedConversation = await conversation.save();
+    req.io.emit('message', newMessage);
     res
       .status(201)
       .json(

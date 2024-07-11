@@ -14,8 +14,8 @@ export interface IInfluencer {
     socialMediaAccounts: {
         platform: string;
         username: string;
-        followerCount: number;
-        engagementRate: number;
+        // followerCount: number;
+        // engagementRate: number;
     }[];
     campaignHistory: string[];
     savedCampaigns: string[];

@@ -20,8 +20,9 @@ const influencerSchema = new mongoose.Schema<IInfluencer>({
     {
       platform: { type: String, required: true },
       username: { type: String, required: true },
-      followerCount: { type: Number, required: false },
-      engagementRate: { type: Number, required: false },
+      profilePictureUrl: { type: String, required: false },
+      // followerCount: { type: Number, required: false },
+      // engagementRate: { type: Number, required: false },
     },
   ],
   campaignHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],

@@ -78,6 +78,10 @@ export const RecentPostsContainer = styled.div`
         }
       }
     }
+
+    .activeConversation{
+      background-color: #fff;
+    }
   }
 
   .conversationBody {

@@ -3,8 +3,11 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
-import { Server } from "socket.io";
 import {createServer} from "http";
+import { Server } from "socket.io";
+import jwt from "jsonwebtoken";
+import socialLinkRoute from "./routes/socialLinksRoute";
+
 
 // routes
 import authRoute from "./routes/authRoute";
@@ -17,7 +20,6 @@ import { dot } from "node:test/reporters";
 import { verifyUser } from "./middlewares/authMiddleware";
 import conversationRoute from "./routes/conversationRoute";
 
-const port = 5000;
 dotenv.config();
 
 
@@ -26,28 +28,18 @@ const app = express();
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
-  pingTimeout: 60000,
   cors: {
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-  },
-});
-/*
-io.use((socket, next) => {
-  const token = socket.handshake.auth.token;
-  if (!token) {
-    return next(new Error("Authentication error"));
-  }
-  try {
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    socket.user = decoded;
-    next();
-  } catch (err) {
-    return next(new Error("Authentication error"));
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true
   }
 });
-*/
-// app.set("io", io);
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 
 // Middleware
 app.use(bodyParser.json());
@@ -77,8 +69,35 @@ app.use("/api/campaigns", campaignRoute);
 app.use("/api/brands", verifyUser, brandRoute);
 app.use("/api/influencer", verifyUser, influencerApi);
 app.use("/api/conversation",verifyUser, conversationRoute);
+app.use("/api/socialLinks", verifyUser, socialLinkRoute);
 
+
+// Socket connection
+io.on("connection", (socket) => {
+  console.log("New client connected");
+  
+  socket.on('sendMessage', async (message) => {
+    io.emit("receiveMessage", message);
+  });
+
+  socket.on("typing", (username) => {
+    socket.emit("typing", username);
+  });
+
+  socket.on("stopTyping", () => {
+    socket.emit("stopTyping");
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
+});
+
+const PORT = process.env.PORT || 5000;
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+httpServer.listen(PORT, () => {
+  console.log(`Server with Socket.IO is running on port ${PORT}`);
 });

@@ -1,9 +1,10 @@
 import ProfileImage from "../../../assets/influencerProfileImages/a.jpeg";
 import InstagramImage from "../../../assets/influencerProfileImages/a.jpeg";
 import XImage from "../../../assets/heroImages/x.png";
-import LinkedinImage from "../../../assets/heroImages/linkedin.png";
+import LinkedinImage from "../../../assets/heroImages/instagram.png";
 import { IConversation } from "../../../interfaces/conversationInterface";
 import { useAuth } from "../../../contexts/authContext";
+import { Link } from "react-router-dom";
 
 interface ActiveUserInfoProps {
   activeConversation: IConversation | null;
@@ -12,7 +13,7 @@ export const ActiveUserInfo: React.FC<ActiveUserInfoProps> = ({
   activeConversation,
 }) => {
   // filter FullName, BrandName, ProfileImage, Logo based on activeUser.role
-  const {user} = useAuth();
+  const { user } = useAuth();
   return (
     <div className="activeBuddyInfo">
       <div className="buddy">
@@ -25,13 +26,13 @@ export const ActiveUserInfo: React.FC<ActiveUserInfoProps> = ({
           </div>
           <div className="buddyInfo">
             <h2>
-            {activeConversation?.participants?.find(
+              {activeConversation?.participants?.find(
+                (p) => p.participantId._id !== user?._id
+              )?.participantId.fullName ||
+                activeConversation?.participants?.find(
                   (p) => p.participantId._id !== user?._id
-                )?.participantId.fullName ||
-                  activeConversation?.participants?.find(
-                    (p) => p.participantId._id !== user?._id
-                  )?.participantId.brandName ||
-                  "Unknown"}
+                )?.participantId.brandName ||
+                "Unknown"}
             </h2>
             <p>online</p>
           </div>
@@ -49,27 +50,29 @@ export const ActiveUserInfo: React.FC<ActiveUserInfoProps> = ({
       </div>
       <div className="socials">
         <div className="socialMedia">
-          <div className="socialMediaLink">
+          {/* <div className="socialMediaLink">
             <img src={InstagramImage} alt="" />
             <div>
               <h2>Instagram</h2>
               <p>@nathanimtadele</p>
             </div>
-          </div>
-          <div className="socialMediaLink">
+          </div> */}
+          {/* <div className="socialMediaLink">
             <img src={XImage} alt="" />
             <div>
               <h2>Twitter</h2>
               <p>@nathanimtadele</p>
             </div>
-          </div>
-          <div className="socialMediaLink">
+          </div> */}
+          {/* <div className="socialMediaLink">
             <img src={LinkedinImage} alt="" />
             <div>
-              <h2>LinkedIn</h2>
-              <p>Nathanim Tadele</p>
+              <h2>Instagram</h2>
+              <Link to={`
+              https://www.instagram.com/${user?.socialMediaAccounts?.[0].username}
+              `}>{user?.socialMediaAccounts?.[0].username}</Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

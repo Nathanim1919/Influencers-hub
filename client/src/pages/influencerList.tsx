@@ -10,28 +10,22 @@ import { IoSaveOutline } from "react-icons/io5";
 import { FaInstagram, FaRegUser } from "react-icons/fa";
 import AvatorImage from "../assets/heroImages/avator.jpg";
 import { LiaSaveSolid } from "react-icons/lia";
-import { influencerApi } from "../api";
+import { conversationApi, influencerApi } from "../api";
 import { CiLocationOn } from "react-icons/ci";
 import { useConversation } from "../contexts/conversationContext";
 import { InfluencerProfile } from "./influencerProfile";
+import { IConversation } from "../interfaces/conversationInterface";
 
 export const InfluencerList: React.FC = () => {
-  const getFromLocalStorage = (key: string) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  };
-
-  const saveToLocalStorage = (key: string, data: Influencer) => {
-    localStorage.setItem(key, JSON.stringify(data));
-  };
 
   const [influencers, setInfluencers] = useState<Influencer[] | null>(null);
   const [savedInfluencers, setSavedInfluencers] = useState<Influencer[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [displaySavedInfluencers, setDisplaySavedInfluencers] = useState(false);
   const { filterParam } = useParams();
-  const { setActiveUser } = useConversation();
+  const { setActiveConversation } = useConversation();
   const [selectedInfluencer, setSelectedInfluencer] = useState<Influencer | null>(null);
+  const [selectedInfluencerToChatWith, setSelectedInfluencerToChatWith] = useState<Influencer | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +34,31 @@ export const InfluencerList: React.FC = () => {
       : setInfluencers(influencers);
     console.log("Influencers that I got: ", influencers);
   }, [displaySavedInfluencers, savedInfluencers, influencers]);
+
+   // create  conversation
+   const createConversation = async () => {
+    if (!selectedInfluencerToChatWith) {
+      console.error("Influencer is undefined.", selectedInfluencerToChatWith);
+      return; // Exit the function or handle the error appropriately
+    }
+    await requestHandler(
+      async () => await conversationApi.createNewConversation(selectedInfluencerToChatWith._id, selectedInfluencerToChatWith.role!),
+      null,
+      (data: IConversation) => {
+        navigate("/influencer/messages");
+        setActiveConversation(data);
+        console.log("Conversations: ", data);
+      },
+      alert
+    );
+  };
+
+
+   // Function to handle messaging action
+   const onMessage = async() => {
+    await createConversation();
+  };
+
 
   const getInfluncers = async () => {
     const apiEndPoint = displaySavedInfluencers
@@ -53,8 +72,6 @@ export const InfluencerList: React.FC = () => {
           ? setSavedInfluencers(data)
           : setInfluencers(data);
         setInfluencers(data);
-        // saveToLocalStorage("filteredInfluncers", data);
-        // saveToLocalStorage("savedInfluncers", data);
       },
       alert
     );
@@ -128,7 +145,7 @@ export const InfluencerList: React.FC = () => {
                   Profile
                 </button>
                 <button
-                  onClick={() => startConversation(influncer)}
+                  onClick={() => {setSelectedInfluencerToChatWith(influncer);onMessage()}}
                   className="message"
                 >
                   <LuMessageSquare />

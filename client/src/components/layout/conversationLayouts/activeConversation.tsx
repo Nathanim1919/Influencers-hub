@@ -23,7 +23,7 @@ export const ActiveConversation: React.FC<ActiveConversationProps> = ({
       <div className="actives">
         {conversations.map((conversation) => (
           <div
-            className="conversation"
+            className={(activeConversation?._id === conversation._id)?"conversation activeConversation":"conversation"}
             onClick={() => setActiveConversation(conversation)}
           >
             <div className="profile">
