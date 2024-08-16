@@ -6,11 +6,9 @@ import CampaignList from "../pages/campaign";
 import { Notification } from "../pages/notification";
 import { Influencers } from "../pages/influencers";
 import { BrandProfile } from "../pages/brandProfile";
-import { useAuth } from "../contexts/authContext";
 import { InfluencerList } from "../pages/influencerList";
 
 export const BrandRoutes = () => {
-  const { user } = useAuth();
 
   return (
     <RouteContainer>

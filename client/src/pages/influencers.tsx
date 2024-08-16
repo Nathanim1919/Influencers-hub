@@ -9,6 +9,7 @@ import { influencerApi } from "../api";
 import { requestHandler } from "../utils";
 import { Influencer } from "../interfaces/influencerInterface";
 import { Link } from "react-router-dom";
+import {INFLUENCER_FILTERS} from "../utils/constants.ts";
 
 
 export const Influencers: React.FC = () => {
@@ -32,55 +33,16 @@ export const Influencers: React.FC = () => {
       <div className="topCatagories">
         <h2>Top Catagories</h2>
         <div className="listOfGatagoris">
-        <Link to={`/influencer/all`} className="influncerCatagorie" onClick={()=>setFilters('technology')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>All</h3>
-              <p>20000K Influencers</p>
-            </div>
-          </Link>
-          <Link to={`/influencer/sport`} className="influncerCatagorie" onClick={()=>setFilters('technology')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>Technology</h3>
-              <p>200K Influencers</p>
-            </div>
-          </Link>
-          <Link to={`/influencer/influncers/${filter}`} className="influncerCatagorie" onClick={()=>setFilters('sport')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>Sport</h3>
-              <p>200K Influencers</p>
-            </div>
-          </Link>
-          <Link to={`/influncers/${filter}`} className="influncerCatagorie" onClick={()=>setFilters('technology')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>Technology</h3>
-              <p>200K Influencers</p>
-            </div>
-          </Link>
-          <Link to={`/influncers/${filter}`} className="influncerCatagorie" onClick={()=>setFilters('fashion')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>Fashion</h3>
-              <p>200K Influencers</p>
-            </div>
-          </Link>
-          <Link to={`/influncers/${filter}`} className="influncerCatagorie" onClick={()=>setFilters('food')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>Food</h3>
-              <p>200K Influencers</p>
-            </div>
-          </Link>
-          <Link to={`/influncers/${filter}`} className="influncerCatagorie" onClick={()=>setFilters('travel')}>
-            <img src={CatagorieImage} alt="" />
-            <div className="content">
-              <h3>Travel</h3>
-              <p>200K Influencers</p>
-            </div>
-          </Link>
+          {INFLUENCER_FILTERS.map((catagorie) => (
+            <Link to={`/influencers/${catagorie.filter}`} className="influncerCatagorie" onClick={()=>setFilters(catagorie.filter)}>
+              <img src={catagorie.image} alt="" />
+                <div className="content">
+                    <h3>{catagorie.title}</h3>
+                    <p>{catagorie.number}</p>
+                </div>
+            </Link>
+            )
+          )}
         </div>
         <div className="topSocialMediasCatagories">
           <h2>Filter With Social Media</h2>

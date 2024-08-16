@@ -61,10 +61,9 @@ const setTokenCookies = (
 // Find user by role
 const findUserByRole = async (_id: string, role: string) => {
   if (role === UserRole.brand.toLocaleLowerCase()) {
-    console.log("User found successfully");
-    return await Brand.findById(_id);
+    return Brand.findById(_id);
   } else {
-    return await Influencer.findById(_id);
+    return Influencer.findById(_id);
   }
 };
 
@@ -115,6 +114,7 @@ export const myAccount = asyncHandler(
       if (!user) throw new Error("User not found");
 
       // Respond with the user
+      console.log("User found successfully: ", user);
       res
         .status(200)
         .json(new ApiResponse(200, user, "User found successfully"));

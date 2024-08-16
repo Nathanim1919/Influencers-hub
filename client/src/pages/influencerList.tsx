@@ -45,7 +45,7 @@ export const InfluencerList: React.FC = () => {
       async () => await conversationApi.createNewConversation(selectedInfluencerToChatWith._id, selectedInfluencerToChatWith.role!),
       null,
       (data: IConversation) => {
-        navigate("/influencer/messages");
+        navigate("/message");
         setActiveConversation(data);
         console.log("Conversations: ", data);
       },

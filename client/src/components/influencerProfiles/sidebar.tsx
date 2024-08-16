@@ -24,19 +24,19 @@ export const Sidebar: React.FC = () => {
         <img src={LogoImage} alt="logo" />
       </div>
       <div className="upperLinks">
-        <Link to="/influencer" className="active">
+        <Link to={`/${user?.role}`} className="active">
           <IoPersonOutline size={30} />
           <span>Profile</span>
         </Link>
-        <Link to="messages">
+        <Link to="/message">
           <BiMessage size={30} />
           <span>Messages</span>
         </Link>
-        {user?.role === "Influencer" && <Link to="campaigns">
+        {user?.role === "Influencer" && <Link to="/campaigns">
           <MdOutlineCampaign size={30} />
           <span>Campaign</span>
         </Link>}
-        {user?.role === "Brand" && <Link to="influencers">
+        {user?.role === "Brand" && <Link to="/influencers">
           <MdOutlineCampaign size={30} />
           <span>Influencers</span>
         </Link>}
@@ -44,7 +44,7 @@ export const Sidebar: React.FC = () => {
           <IoSettingsOutline size={30} />
           <span>Settings</span>
         </Link>
-        <Link to="notifications">
+        <Link to="/notification">
           <IoNotificationsOutline size={30} />
           <span>Notifications</span>
         </Link>

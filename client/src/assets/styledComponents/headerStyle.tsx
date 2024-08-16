@@ -4,11 +4,12 @@ export const HeaderContainer = styled.div`
   display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color :#eeee;
+    background-color :#fff;
     padding:1rem .5rem;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid #ddd;
 
     h1{
         font-size: 20px;

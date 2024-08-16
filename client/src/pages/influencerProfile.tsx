@@ -1,13 +1,14 @@
 import { InfluencerProfileContainer } from "../assets/styledComponents/influencerProfile";
-import { RecentPosts } from "../components/influencerProfiles/recentPosts";
+// import { RecentPosts } from "../components/influencerProfiles/recentPosts";
 import { SocialMediaMetrics } from "../components/influencerProfiles/socialMediaMetrics";
 import MyImage from "../assets/influencerProfileImages/a.jpeg";
-import { SponsoredPosts } from "../components/influencerProfiles/sponsoredPosts";
+// import { SponsoredPosts } from "../components/influencerProfiles/sponsoredPosts";
 import { CiEdit } from "react-icons/ci";
 import { Influencer } from "../interfaces/influencerInterface";
 import { useAuth } from "../contexts/authContext";
 import { InfluencerTestimonials } from "../components/specific/influencerTetimonials";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import React from "react";
 
 
 

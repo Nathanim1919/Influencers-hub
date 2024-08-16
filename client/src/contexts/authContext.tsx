@@ -29,10 +29,17 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       async () => await authApi.login(user),
       setLoading,
       (data) => {
-        setUser(data as IUser);
-        navigate("/influencer");
+         // console.log("User role is: ", date?.role);
+          setUser(data as IUser);
+        if (data?.role) {
+            navigate(`/${data?.role}`);
+        } else {
+            navigate("/")
+        }
       },
-      alert
+      () => {
+          navigate('/login');
+      }
     );
   };
 
@@ -40,9 +47,13 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     await requestHandler(
       async () => await authApi.register(user),
       setLoading,
-      (data) => {
-        // setUser(data as IUser);
-        navigate("/login");
+      (data: IUser) => {
+        setUser(data);
+        if (data?.role) {
+            navigate(`/${user?.role}`);
+        } else {
+            navigate("/")
+        }
       },
       alert
     );
@@ -66,12 +77,12 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setLoading,
       (data) => {
         setUser(data as IUser);
-        console.log(data);
-        navigate("/influencer");
       },
-      ()=>{console.log("error")}
+      ()=> {
+          navigate('/login');
+      }
     );
-  }, []);
+  }, [navigate]);
 
   // Provide the AuthContext to its children
   return (

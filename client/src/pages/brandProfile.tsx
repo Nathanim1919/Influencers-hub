@@ -26,7 +26,7 @@ export const BrandProfile: React.FC = () => {
     await requestHandler(
       async () => campaignApi.getBrandCampaigns(),
       setLoading,
-      (response) => {
+      (response: Campaign[]) => {
         setCampaigns(response);
       },
       alert

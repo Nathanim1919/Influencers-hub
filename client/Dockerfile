@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install all dependencies
-RUN npm install
+RUN npm ci
 
 
 # Copy the current directory contents into the container at /app

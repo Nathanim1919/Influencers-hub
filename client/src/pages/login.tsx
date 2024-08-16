@@ -16,7 +16,7 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await login({ email, password })
-      .then((res) => {
+      .then(() => {
         console.log("Login successful");
       })
       .catch((err) => {
